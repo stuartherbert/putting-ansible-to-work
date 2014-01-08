@@ -1,0 +1,5 @@
+safe: true
+pygments: true
+url: http://books.stuartherbert.com/putting-ansible-to-work
+baseurl: /putting-ansible-to-work
+markdown: maruku

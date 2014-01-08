@@ -1,0 +1,27 @@
+{
+	"navDepth": 3,
+	"contents":	[
+		"index",
+		"preface",
+		"introduction",
+		"why-ansible",
+		"installing-ansible",
+		"key-concepts",
+		"preparing-a-computer",
+		"first-playbook",
+		"organising-your-ansible-files",
+		"building-roles",
+		"working-with-config-files",
+		"restarting-services",
+		"adding-dependencies-to-roles",
+		"making-roles-repeatable",
+		"debugging-failing-roles",
+		"building-software-from-source",
+		"temporary-install-scripts",
+		"multiple-operating-systems",
+		"managing-the-inventory",
+		"feedback",
+		"copyright",
+		"licence"
+	]
+}
