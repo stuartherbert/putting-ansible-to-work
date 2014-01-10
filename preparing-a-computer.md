@@ -17,11 +17,11 @@ Ansible can be used to provision practically any UNIX-like computer that support
 * a virtual machine either locally or in the cloud
 * a physical server running in a datacenter
 
-Throughout this book, I'm going to call the computer that is being provision the _target computer_.
+Throughout this book, I'm going to call the computer that is being provisioned the _target computer_.
 
 ## Install SSH
 
-You need to make sure that an SSH service is installed and running on the target computer.  When you run Ansible, it is going to log into the target computer via SSH.
+You need to make sure that an SSH daemon is installed and running on the target computer.  When you run Ansible, it is going to log into the target computer via SSH.
 
 <pre>
 # Ubuntu, Debian
@@ -35,26 +35,28 @@ You need to create an account for Ansible to log into on the target computer.  T
 
 Which type of account should you create?
 
-* Most of the time, you should create an account for you, and use that when you run Ansible (I'll show you how when you run your first playbook in the next chapter).  That way, the target computer's logs will keep a record of who made changes to the computer.  This is very handy if there are several of you who share responsibility for maintaining your servers.
+* Most of the time, you should create an account for you (e.g. _stuart_), and use that when you run Ansible (I'll show you how in the next chapter).  That way, the target computer's logs will keep a record of who made changes to the computer.  This is very handy if there are several of you who share responsibility for maintaining your servers.
 * All virtual machines built by [vagrant](http://vagrantup.com) come with a `vagrant` user account.  You can reuse the `vagrant` account (and its existing SSH key) with Ansible.
 
 Whichever way you go, I'm going to call this user the _remote user_ throughout the rest of this book.
 
-You can have different remote users on each target computer.  In the next chapter, I'll show you how to tell Ansible which remote user to use when you run your first playbook, and in [Managing The Inventory](managing-the-inventory.html) towards the end of the book I'll show you how to configure Ansible so that it remembers which remote user to use for which target computer.
+You can have different remote users on each target computer.  In the next chapter, I'll show you how to tell Ansible which remote user to use when you run your first playbook, and in [Managing The Inventory](managing-the-inventory.html) I'll show you how to configure Ansible so that it remembers which remote user to use for which target computer.
 
 ## Setup Sudo
 
 You should never ever let anyone log into your computers remotely as `root`; you should always require them to log in as a normal user account first, and then use the `sudo` command to perform privileged operations.  It's better for the security of your server, and your logs will contain entries telling you who has used `sudo` to make changes to your servers.
 
-Many of the operations that you'll want Ansible to do have to be done as `root`.  The remote user must be able to use the `sudo` command to run commands as `root`.
+Many of the operations that you'll want Ansible to do have to be done as `root`.  The remote user must be able to use the `sudo` command to run commands as `root`.  This is normally done by adding the remote user to the `admin` or `wheel` group on the target computer.
 
 ## What About Password-less Sudo?
 
 Normally, the `sudo` command will prompt you for your password when you run it.  This is to make sure that it is you who is running the command, rather than someone who has somehow gotten into your account.  It's one way of limiting the damage if you do get hacked (or someone sits down at your computer whilst you're away for a few minutes).
 
-It's there for a very good reason, and you should be very reluctant to disable `sudo` asking for your password.  Ansible can prompt you for your password before it logs into the target computer, so that it knows how run `sudo`.
+It's there for a very good reason, and you should be very reluctant to disable `sudo` asking for your password.  Ansible can prompt you for your password before it logs into the target computer, so that it can still use `sudo`.
 
 The only problem comes if you're using Ansible to manage multiple computers and you're not using the same password on every computer.  (This can happen when you're using different remote users on different target computers, for example).  As far as I know, Ansible doesn't ask you for the password for each remote user, and the only way to make this work is to reconfigure `sudo` to stop prompting the remote users for a password.
+
+(You can use the Inventory to tell Ansible which password to use for each remote user, but this is even more insecure than adopting password-less `sudo` imho).
 
 ## Install An SSH Key
 

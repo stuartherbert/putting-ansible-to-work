@@ -7,4 +7,6 @@ next: '<a href="miscellaneous-tips.html">Next: Miscellaneous Tips</a>'
 
 # Managing The Inventory
 
+## Setting The Remote User For A Target Computer
+
 ## Setting The SSH Key For A Target Computer
