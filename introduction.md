@@ -15,7 +15,7 @@ I've written this book to share best practices for working with Ansible.  It com
 
 This book is for anyone who wants to start using Ansible, and for anyone already using Ansible who wants to improve their practices and approach.
 
-You will need to be comfortable using a Linux computer, and using the command-line.  Most of the examples use Ubuntu 13.10.
+You will need to be comfortable doing basic Linux administration from the command-line.  Most of the examples are for Ubuntu 13.10.
 
 ## What Will You Learn From This Book?
 

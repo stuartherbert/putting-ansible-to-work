@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Feedback Most Welcome
-prev: '<a href="managing-the-inventory.html">Prev: Managing The Inventory</a>'
+prev: '<a href="miscellaneous-tips.html">Prev: Miscellaneous Tips</a>'
 next: '<a href="copyright.html">Next: Copyright</a>'
 ---
 

@@ -1,13 +1,92 @@
 ---
 layout: top-level
 title: Preparing A Computer For Ansible
-prev: '<a href="key-concepts.html">Prev: Key Concepts</a>'
+prev: '<a href="installing-ansible.html">Prev: Installing Ansible</a>'
 next: '<a href="first-playbook.html">Next: Your First Playbook</a>'
 ---
 
 # Preparing A Computer For Ansible
 
-Mention:
+Before you can use Ansible to provision a computer, it needs to be prepared first, by following the steps in this chapter.
 
-* password-less sudo
-* passphrase-less SSH keys
+## What Type Of Computer Can Ansible Provision?
+
+Ansible can be used to provision practically any UNIX-like computer that supports Python and SSH.  This can include:
+
+* your own desktop or laptop
+* a virtual machine either locally or in the cloud
+* a physical server running in a datacenter
+
+Throughout this book, I'm going to call the computer that is being provision the _target computer_.
+
+## Install SSH
+
+You need to make sure that an SSH service is installed and running on the target computer.  When you run Ansible, it is going to log into the target computer via SSH.
+
+<pre>
+# Ubuntu, Debian
+sudo apt-get install openssh-server
+sudo /etc/init.d/ssh start
+</pre>
+
+## Create A User Account
+
+You need to create an account for Ansible to log into on the target computer.  This can be your own account, or it can be a dedicated account just for Ansible to use.
+
+Which type of account should you create?
+
+* Most of the time, you should create an account for you, and use that when you run Ansible (I'll show you how when you run your first playbook in the next chapter).  That way, the target computer's logs will keep a record of who made changes to the computer.  This is very handy if there are several of you who share responsibility for maintaining your servers.
+* All virtual machines built by [vagrant](http://vagrantup.com) come with a `vagrant` user account.  You can reuse the `vagrant` account (and its existing SSH key) with Ansible.
+
+Whichever way you go, I'm going to call this user the _remote user_ throughout the rest of this book.
+
+You can have different remote users on each target computer.  In the next chapter, I'll show you how to tell Ansible which remote user to use when you run your first playbook, and in [Managing The Inventory](managing-the-inventory.html) towards the end of the book I'll show you how to configure Ansible so that it remembers which remote user to use for which target computer.
+
+## Setup Sudo
+
+You should never ever let anyone log into your computers remotely as `root`; you should always require them to log in as a normal user account first, and then use the `sudo` command to perform privileged operations.  It's better for the security of your server, and your logs will contain entries telling you who has used `sudo` to make changes to your servers.
+
+Many of the operations that you'll want Ansible to do have to be done as `root`.  The remote user must be able to use the `sudo` command to run commands as `root`.
+
+## What About Password-less Sudo?
+
+Normally, the `sudo` command will prompt you for your password when you run it.  This is to make sure that it is you who is running the command, rather than someone who has somehow gotten into your account.  It's one way of limiting the damage if you do get hacked (or someone sits down at your computer whilst you're away for a few minutes).
+
+It's there for a very good reason, and you should be very reluctant to disable `sudo` asking for your password.  Ansible can prompt you for your password before it logs into the target computer, so that it knows how run `sudo`.
+
+The only problem comes if you're using Ansible to manage multiple computers and you're not using the same password on every computer.  (This can happen when you're using different remote users on different target computers, for example).  As far as I know, Ansible doesn't ask you for the password for each remote user, and the only way to make this work is to reconfigure `sudo` to stop prompting the remote users for a password.
+
+## Install An SSH Key
+
+Each remote user, on each target computer, needs an SSH key installing.  You can use the same key everywhere (for example, use your own SSH key if Ansible is going to log in as you on each target computer).
+
+If you don't want to type in your SSH key passphrase all the time, use `ssh-add` on your computer to setup an SSH agent.  (If you've never done this before, you might find Daniel Robbin's [Keychain](http://www.funtoo.org/Keychain) utility to be a great help).
+
+Using more than one SSH key can cause problems - not with Ansible, but with SSH itself.  When you get to over six SSH keys, you might start seeing SSH failing to authenticate against the target computer.  That's because the OpenSSH client will happily try every SSH key you've told it about using `ssh-add`, and the OpenSSH server will ban you when six keys have failed.
+
+The way around this is to make sure Ansible knows which key to use for which target computer.  I'll cover how to do this in [Managing The Inventory](managing-the-inventory.html) towards the end of this book.
+
+(Ansible does support logging into target computers via SSH using passwords, but every responsible sysadmin I've ever worked with has always disabled logging in using passwords.  All you need is one weak password, and the box is at risk.  It's just not worth it.)
+
+## What About Passphrase-less SSH Keys?
+
+It's not unusual for people to create SSH keys that have no passphrase to use with automation tasks.  They're essential for automation, because you're normally not there to type in a passphrase when automation software runs.
+
+They are, however, a security risk, especially if the private key is installed onto your servers at all.  If someone breaks into one server and finds that private key, then they can log into any of your other servers where you're using your automation key.  That's a terrible situation to end up in.
+
+If you're always going to be running Ansible manually from your terminal window, then you never need to use a passphrase-less SSH key.  You're there to type in your passphrase, or run `ssh-add`.  If Ansible is going to run automatically - from `cron`, or triggered by a software build script for example, then you'll need to use a passphrase-less SSH key.
+
+## Install Python's SELinux Library
+
+If the target computer is running SELinux (i.e. it is running RedHat or CentOS), then you need to install an extra Python library onto that computer:
+
+<pre>
+# RedHat, CentOS
+sudo yum install libselinux-python
+</pre>
+
+## Ready To Provision
+
+When you get to here, you've finished preparing the target computer.  Ansible can now log into the target computer as the remote user using SSH, and can execute privileged commands using `sudo`.
+
+It's time to write your first Ansible playbook.

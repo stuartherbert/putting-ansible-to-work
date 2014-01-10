@@ -1,8 +1,8 @@
 ---
 layout: top-level
 title: Key Concepts
-prev: '<a href="installing-ansible.html">Prev: Installing Ansible</a>'
-next: '<a href="preparing-a-computer.html">Next: Preparing A Computer For Ansible</a>'
+prev: '<a href="why-ansible.html">Prev: Why Ansible?</a>'
+next: '<a href="installing-ansible.html">Next: Installing Ansible</a>'
 ---
 
 # Key Concepts

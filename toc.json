@@ -5,8 +5,8 @@
 		"preface",
 		"introduction",
 		"why-ansible",
-		"installing-ansible",
 		"key-concepts",
+		"installing-ansible",
 		"preparing-a-computer",
 		"first-playbook",
 		"organising-your-ansible-files",
@@ -20,6 +20,7 @@
 		"temporary-install-scripts",
 		"multiple-operating-systems",
 		"managing-the-inventory",
+		"miscellaneous-tips",
 		"feedback",
 		"copyright",
 		"licence"

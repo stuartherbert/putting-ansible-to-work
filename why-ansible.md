@@ -2,7 +2,7 @@
 layout: top-level
 title: Why Ansible?
 prev: '<a href="introduction.html">Prev: Introduction</a>'
-next: '<a href="installing-ansible.html">Next: Installing Ansible</a>'
+next: '<a href="key-concepts.html">Next: Key Concepts</a>'
 ---
 # Why Ansible?
 
