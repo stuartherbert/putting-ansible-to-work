@@ -14,3 +14,7 @@ To finish this book, here's a list of Ansible tips that don't really fit into an
 Throughout this book, we've been making Ansible connect to target computers via SSH; more specifically, by using a real SSH client.  This can be a little slow, especially as your playbooks grow in size and complexity.
 
 Very early versions of Ansible got around this performance penalty by using a Python SSH library called Paramiko instead of a real SSH client.  Paramiko is definitely faster, but in my experience not reliable.  I've regularly had Ansible hang when using Paramiko - something that never happens with using a real SSH client.
+
+## How To List All Of The Gathered Facts
+
+I've no idea - it's time that I did.

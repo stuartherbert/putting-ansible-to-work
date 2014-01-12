@@ -19,9 +19,9 @@ You will need to be comfortable doing basic Linux administration from the comman
 
 ## What Will You Learn From This Book?
 
-This book will teach you the key skills you need to use Ansible:
+This book is _task-oriented_: it teaches you how to get things done using Ansible:
 
-* the [key concepts](key-concepts.html) behind how Ansible works, and where to find more information about them in the official Ansible documentation.
+* the [key concepts](key-concepts.html) behind how Ansible works, and where to find more information about them in the official Ansible documentation
 * how to [install Ansible](installing-ansible.html) and how to [prepare a computer to be provisioned by Ansible](preparing-a-computer.html)
 * how to [create your first playbook](first-playbook.html) and how to [organise your Ansible playbooks](organising-your-ansible-files.html)
 * how to [build an Ansible role](building-roles.html) by following a simple three-point plan

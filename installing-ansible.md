@@ -53,4 +53,16 @@ sudo make install
 
 Ansible is now ready to run from your computer.
 
-Before you can use Ansible, you need to prepare each computer that Ansible is going to provision.
+Before you can use Ansible, you need to prepare each computer that Ansible is going to provision.  I'll show you how to do that in the next chapter.
+
+## Upgrading Ansible
+
+[You'll want to upgrade Ansible reguarly](key-concepts-html#ansible_versioning) to get access to the latest modules and to catch any backwards-compatibility breaks in your playbooks.
+
+Upgrading is very simple:
+
+1. Check [the official AnsibleWorks install docs](http://docs.ansible.com/intro_installation.html) to see if there are any new dependencies you need to install, then
+2. Re-clone the Ansible git repo and run `sudo make install` inside it again
+3. Re-run your playbooks to make sure that they still work
+
+If any of your playbooks have stopped working, check [the Ansible changelog](https://github.com/ansible/ansible/blob/devel/CHANGELOG.md) first to see if there are any useful pointers to your problem.

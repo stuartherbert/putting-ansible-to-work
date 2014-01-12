@@ -20,9 +20,9 @@ These are the problems that Ansible solves.
 
 [Ansible](http://ansibleworks.com) is a _provisioning tool_: you use it to install software onto computers in an automated way.
 
-If we count the venerable [CFengine](http://cfengine.com) as a 1st generation provisioning tool, and both [Chef](http://getchef.com) & [Puppet](http://puppetlabs.com) as rival (and very successful) 2nd generation provisioning tools, then Ansible would count as one of the 3rd generation provisioning tools.
+If we count the venerable [CFengine](http://cfengine.com) as a 1st generation provisioning tool, and both [Chef](http://getchef.com) & [Puppet](http://puppetlabs.com) as rival (and very successful) 2nd generation provisioning tools, then Ansible would count as one of the 3rd generation provisioning tools.  All of these tools borrow ideas from each other, and are worth considering before making a final choice.
 
-It's too early to say whether 3rd generation provisioning tools will replace older tools. Ansible has already found a sweet spot.
+Thanks to its simplicity and no-infrastructure demands, Ansible has already found a sweet spot amongst developers who are looking for an automated provisioning tool.  That's the constituency that I belong to, and who this book is for.
 
 ## Why Ansible?
 
@@ -32,7 +32,7 @@ Here's why I picked Ansible:
 
 * It uses Python, which already comes with your computer.
 
-  There's a few Python modules to install (Jinja2, YAML, and SELinux support), and that's it.  No need to go through Ruby / RubyGems hell.  That is a huge amount of hassle completely avoided, time saved to spend on other things.
+  There's a few Python modules to install (Jinja2, YAML, and SELinux support), and that's it.  No need to go through the pain of Ruby / RubyGems hell.  That is a huge amount of hassle completely avoided.
 
 * Things happen in the order that you want.
 
@@ -50,7 +50,6 @@ Ansible isn't the only tool that does these things, but it's the best one I've f
 
 ## What Does Ansible Run On?
 
-Ansible runs best on Linux distributions and on other UNIX-like operating systems such as Apple's OS X.
+Ansible runs best on Linux distributions and on other UNIX-like operating systems such as Apple's OS X.  It may run on Windows, but it has been many years since I used Windows, so I can't help you with that at all.
 
-It may run on Windows, but I don't use Windows at all myself these days, so I can't help you with that at all.
-
+Let's take a look at how Ansible works, and the key concepts that you need to learn to get the most out of Ansible, before showing you how to install Ansible onto your computer.
