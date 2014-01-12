@@ -13,7 +13,7 @@ Ansible gets installed onto your computer: your desktop and/or laptop.  You'll r
 
 ## Do You Need A Server For Ansible?
 
-You don't need to set aside a server to install Ansible onto.  Unlike alternatives, Ansible doesn't need a central server or central database at all.  Instead, Ansible reads all of its configuration from files stored in the playbook repo.
+You don't need to set aside a server to install Ansible onto.  Unlike alternatives, Ansible doesn't need a central server or central database at all.  Instead, Ansible reads all of its configuration from files stored in the [playbook repo](key-concepts.html#playbook_repo).
 
 If there are several of you who share responsibility for managing a set of servers, each of you can run Ansible from your own computers, and share your Ansible playbook repo via source control.
 
@@ -24,28 +24,28 @@ I recommend that you always install Ansible from [source](https://github.com/ans
 First, install Python's YAML extension:
 
 <pre>
-# Ubuntu and Debian
+# Ubuntu, Debian
 sudo apt-get install python-yaml
 </pre>
 
 Then, install Python's Jinja2 templating library:
 
 <pre>
-# Ubuntu and Debian
+# Ubuntu, Debian
 sudo apt-get install python-jinja2
 </pre>
 
 Then, if you don't have it already, install Git:
 
 <pre>
-# Ubuntu and Debian
+# Ubuntu, Debian
 sudo apt-get install git
 </pre>
 
 Finally, install Ansible from Github:
 
 <pre>
-# Ubuntu and Debian
+# Ubuntu, Debian
 git clone https://github.com/ansible/ansible.git
 cd ansible
 sudo make install
@@ -65,4 +65,4 @@ Upgrading is very simple:
 2. Re-clone the Ansible git repo and run `sudo make install` inside it again
 3. Re-run your playbooks to make sure that they still work
 
-If any of your playbooks have stopped working, check [the Ansible changelog](https://github.com/ansible/ansible/blob/devel/CHANGELOG.md) first to see if there are any useful pointers to your problem.
+If any of your playbooks have stopped working, check [the Ansible changelog](https://github.com/ansible/ansible/blob/devel/CHANGELOG.md) first to see if there are any useful pointers to your problem.  I look at [debugging failing roles](debugging-failing-roles.html) later in the book.

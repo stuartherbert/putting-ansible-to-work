@@ -16,7 +16,7 @@ Don't worry if they don't mean much to you first time around.  I've put them at 
 When you run Ansible, on the command-line you tell it:
 
 * the computer or list of computers that you want to provision ([the Inventory](#inventory)), and
-* the provisioning instructions to follow ([the playbooks](#playbooks)).
+* the provisioning instructions to follow ([the playbook](#playbook)).
 
 Ansible logs into each computer via SSH, and [inspects the current state](#gathering_facts).  It turns this state into [facts](#facts) - constants that your provisioning instructions can use to decide what to do and what not to do.  It's important to note that, at this point, it isn't looking to see what you have already installed onto the computer - it is looking at things like what operating system you have installed.
 
@@ -50,7 +50,7 @@ A _playbook repo_ is a collection of files that, together, tell Ansible how to i
 
 A playbook repo contains:
 
-* One or more [playbooks](#playbooks) (required)
+* One or more [plays](#plays) (required)
 * One or more [roles](#roles) (required)
 * The [Inventory](#inventory) (required)
 * [Per-host variables](#host_vars) and [per-group variables](#group_vars) (optional)
@@ -63,9 +63,20 @@ You'll also find more information about playbook repos in the official Ansible d
 
 * [Playbook Best Practices: Content Organisation](http://docs.ansible.com/playbooks_best_practices.html#content-organization)
 
-## Playbooks
+## Playbook
 
-A _playbook_ is a [YAML file](#yaml) that tells Ansible which [roles](#roles) to apply to a set of computers.
+A _playbook_ is the contents of your _playbook repo_.  It's a sporting term: the playbook contains all of the different [plays](#plays) that are available to perform - i.e. all of the different provisioning instructions that Ansible can carry out.
+
+You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation, and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  I'll do my best to keep the two terms separate in this book.
+
+I cover the playbook in these chapters:
+
+* [Your First Playbook](first-playbook.html)
+* [Organising Your Ansible Files](organising-your-ansible-files.html)
+
+## Play
+
+A _play_ is a [YAML file](#yaml) that tells Ansible which [roles](#roles) to apply to a set of computers.
 
 <pre>
 ---
@@ -76,11 +87,13 @@ A _playbook_ is a [YAML file](#yaml) that tells Ansible which [roles](#roles) to
   - cmd-distcc
 </pre>
 
-This playbook tells Ansible to apply the roles _cmd-gcc, cmd-autotools, cmd-distcc_ to every host in the [Inventory](#inventory) that's in the _build-servers_ set.
+This play tells Ansible to apply the roles _cmd-gcc, cmd-autotools, cmd-distcc_ to every host in the [Inventory](#inventory) that's in the _build-servers_ set.
 
-I explain the playbook in detail in [Your First Playbook](your-first-playbook.html).
+You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation, and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  I'll do my best to keep the two terms separate in this book.
 
-You'll also find more information about playbooks in the official Ansible docs:
+I explain the play in detail in [Your First Playbook](your-first-playbook.html).
+
+You'll also find more information about plays in the official Ansible docs:
 
 * [Playbooks](http://docs.ansible.com/playbooks.html)
 * [Playbooks: Special Topics](http://docs.ansible.com/playbooks_special_topics.html)
@@ -270,6 +283,20 @@ I look at group vars in these chapters:
 You'll also find more information about group vars in the official Ansible docs:
 
 * [Inventory: Group Variables](http://docs.ansible.com/intro_inventory.html#group-variables)
+
+## Target Computer
+
+A _target computer_ is a computer that is provisioned via Ansible.  The list of target computers and the plays to apply to them is stored in the [Inventory](#inventory).  Target computers can include your own desktop / laptop, a virtual machine running locally or in the cloud, or a physical server sat in a datacenter.
+
+I look at the target computer in detail in [Preparing A Computer For Ansible](preparing-a-computer.html).
+
+In the official Ansible docs, you'll often seen target computers referred to as _hosts_ or _the host_.  I've found that _host_ just ends up confusing people, as they're used to the term _host_ meaning where software is running.
+
+## Remote User
+
+The _remote user_ is the UNIX user account that Ansible should log into on the [target computer](#target_computer).  Ansible will normally log into this account via SSH to perform [tasks](#tasks).
+
+I look at remote users in detail in [Preparing A Computer For Ansible](preparing-a-computer.html).
 
 ## Other Terms
 
