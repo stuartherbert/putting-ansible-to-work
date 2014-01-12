@@ -1,6 +1,8 @@
 ---
 layout: top-level
 title: Using Meta-Roles
+prev: '<a href="temporary-install-scripts.html">Prev: Using Temporary Install Scripts</a>'
+next: '<a href="multiple-operating-systems.html">Next: Supporting Multiple Operating Systems</a>'
 ---
 
 # Using Meta-Roles
