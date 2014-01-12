@@ -22,8 +22,8 @@ The first thing you need to do is to create a folder structure to store your pla
 <pre>
 mkdir ~/ansible-playbooks
 cd ~/ansible-playbooks
-mkdir -p hosts/group_vars
-mkdir -p hosts/host_vars
+mkdir -p inventory/group_vars
+mkdir -p inventory/host_vars
 mkdir plays
 </pre>
 
@@ -31,10 +31,12 @@ Save the following into the file `~/ansible-playbooks/ansible.cfg`:
 
 <pre>
 [defaults]
-hostfile=hosts/
+hostfile=inventory/
 </pre>
 
 ### Create The Curl Role
+
+Create the folder where the [tasks](key-concepts.html#tasks) for the 'curl' role will live:
 
 <pre>
 mkdir -p ~/ansible-playbooks/plays/curl/tasks
@@ -73,19 +75,19 @@ Save the following into the file `~/ansible-playbooks/site.yml`
 
 <pre>
 ---
-- include: playbooks/web-dev.yml
+- include: plays/web-dev.yml
 </pre>
 
 ### Add Your Computer To The Inventory
 
-Save the following into the file `~/ansible-playbooks/hosts/inventory`
+Save the following into the file `~/ansible-playbooks/inventory/hosts`
 
 <pre>
 [web-dev]
 localhost
 </pre>
 
-Save the following into the file `~/ansible-playbooks/hosts/host_vars/localhost.yml`
+Save the following into the file `~/ansible-playbooks/inventory/host_vars/localhost.yml`
 
 <pre>
 ---
@@ -100,7 +102,7 @@ Run your first Ansible playbook:
 
 <pre>
 cd ~/ansible-playbooks
-ansible-playbook -K -i hosts/inventory.ini site.yml
+ansible-playbook -K site.yml
 </pre>
 
 Ansible will prompt you for your sudo password.  Type it in, and press ENTER to continue.
@@ -136,7 +138,7 @@ We've just done the following:
 
    A role is the building block of Ansible.  You create roles to install software, and then pull them into plays to combine them into provisioning instructions.
 
-   In this case, the 'curl' role uses the [apt module](http://docs.ansible.com/apt_module.html) to install the latest version of the package called 'curl' onto the target computer.
+   In this case, the 'curl' role uses the [apt module](http://docs.ansible.com/apt_module.html) to install the latest version of the package called 'curl' onto the target computer.  If the target computer is RedHat-based, you'd use the [yum module](http://docs.ansible.com/yum_module.html) instead to achieve the same thing.
 
 1. Created the 'web-dev' play
 
@@ -150,7 +152,7 @@ We've just done the following:
 
 1. Added 'localhost' to the Inventory
 
-   The file `hosts/inventory` is a .ini file that contains a list of which hosts to run which plays against, and the file `hosts/host_vars/localhost.yml` contains a list of variables to use when provisioning the target computer called 'localhost'.
+   The file `inventory/hosts` is a .ini file that contains a list of which hosts to run which plays against, and the file `inventory/host_vars/localhost.yml` contains a list of variables to use when provisioning the target computer called 'localhost'.
 
    In this case, we've added 'localhost' to the 'web-dev' group.  Every computer listed in the 'web-dev' group will have the 'web-dev' play run against it.  We've told Ansible to treat 'localhost' as the current computer, so that it doesn't login via SSH to act.
 
