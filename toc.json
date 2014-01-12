@@ -18,6 +18,7 @@
 		"debugging-failing-roles",
 		"building-software-from-source",
 		"temporary-install-scripts",
+		"using-meta-roles",
 		"multiple-operating-systems",
 		"managing-the-inventory",
 		"miscellaneous-tips",
