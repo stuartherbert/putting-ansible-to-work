@@ -24,6 +24,12 @@ If we count the venerable [CFengine](http://cfengine.com) as a 1st generation pr
 
 Thanks to its simplicity and no-infrastructure demands, Ansible has already found a sweet spot amongst developers who are looking for an automated provisioning tool.  That's the constituency that I belong to, and who this book is for.
 
+<div class="callout info" markdown="1">
+#### Where Does It Come From?
+
+Ansible is an open-source project released under [v3 of the GNU General Public License](https://github.com/ansible/ansible/blob/devel/COPYING).  Created by [Michael DeHaan](https://github.com/mpdehaan), Ansible is backed by [AnsibleWorks](http://www.ansibleworks.com), which funds continued development of Ansible and provides additional tools and consulting services.
+</div>
+
 ## Why Ansible?
 
 There are many other provisioning tools out there - far too many to list here.  They are capable, well supported, and very popular.  So why should you give Ansible a look?

@@ -49,7 +49,8 @@ You should never ever let anyone log into your computers remotely as `root`; you
 
 Many of the operations that you'll want Ansible to do have to be done as `root`.  The remote user must be able to use the `sudo` command to run commands as `root`.  This is normally done by adding the remote user to the `admin` or `wheel` group on the target computer.  Check your operating system's `/etc/sudoers` config file for details.
 
-### What About Password-less Sudo?
+<div class="callout warning" markdown="1">
+#### What About Password-less Sudo?
 
 Normally, the `sudo` command will prompt you for your password when you run it.  This is to make sure that it is you who is running the command, rather than someone who has somehow gotten into your account.  It's one way of limiting the damage if you do get hacked (or someone sits down at your computer whilst you're away for a few minutes).
 
@@ -58,6 +59,7 @@ It's there for a very good reason, and you should be very reluctant to disable `
 The only problem comes if you're using Ansible to manage multiple computers and you're not using the same password on every computer.  (This can happen when you're using different remote users on different target computers, for example).  As far as I know, Ansible doesn't ask you for the password for each remote user, and the only way to make this work is to reconfigure `sudo` to stop prompting the remote users for a password.
 
 (You can use the Inventory and playbooks to tell Ansible which password to use for each remote user, but this is even more insecure than adopting password-less `sudo` imho).
+</div>
 
 ## Install An SSH Key
 
@@ -71,7 +73,8 @@ The way around this is to make sure Ansible knows which key to use for which tar
 
 (Ansible does support logging into target computers via SSH using passwords, but no computer accessible from the Internet should ever allow remote access via passwords.  All it takes is one weak password, and the box can be cracked.  It's just not worth it.)
 
-### What About Passphrase-less SSH Keys?
+<div class="callout warning" markdown="1">
+#### What About Passphrase-less SSH Keys?
 
 It's not unusual for people to create SSH keys that have no passphrase to use with automation tasks.  They're essential for automation, because you're normally not there to type in a passphrase when automation software runs.
 
@@ -81,6 +84,7 @@ Which way is right depends on how you're going to run Ansible:
 
 * If you're always going to be running Ansible manually from your terminal window, then you never need to use a passphrase-less SSH key.  You're there to type in your passphrase, or run `ssh-add`.
 * If Ansible is going to run automatically - from `cron`, or triggered by a software build script for example - then you'll need to use a passphrase-less SSH key.
+</div>
 
 ## Install Python's SELinux Library
 

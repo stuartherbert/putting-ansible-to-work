@@ -17,6 +17,12 @@ You don't need to set aside a server to install Ansible onto.  Unlike alternativ
 
 If there are several of you who share responsibility for managing a set of servers, each of you can run Ansible from your own computers, and share your Ansible playbook repo via source control.
 
+<div class="callout info" markdown="1">
+#### Perfect For Developers
+
+One of the reasons Ansible is becoming popular amongst developers is that there's no central infrastructure to setup and maintain.  Just clone the software repo where you store your Ansible playbook, and run Ansible from the comfort of your own computer.
+</div>
+
 ## How Do You Install Ansible?
 
 I recommend that you always install Ansible from [source](https://github.com/ansible/ansible).  Ansible is currently fast-moving, and grabbing the latest version will give you the latest bug fixes and features.  (As a rule of thumb, the official documentation always describes the very latest version).
@@ -66,3 +72,9 @@ Upgrading is very simple:
 3. Re-run your playbooks to make sure that they still work
 
 If any of your playbooks have stopped working, check [the Ansible changelog](https://github.com/ansible/ansible/blob/devel/CHANGELOG.md) first to see if there are any useful pointers to your problem.  I look at [debugging failing roles](debugging-failing-roles.html) later in the book.
+
+<div class="callout warning" markdown="1">
+#### Remember To Tell Everyone To Upgrade Ansible
+
+If there are several of you using Ansible, you'll all need to upgrade at the same time.  Different people using different versions of Ansible can be a cause of unexpected playbook errors.
+</div>

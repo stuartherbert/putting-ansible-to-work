@@ -80,7 +80,7 @@ Fortunately, most Ansible modules perform this check for you.  You'll only have 
 
 ## Step 2: Install
 
-
+Use [Ansible's extensive list of modules](http://docs.ansible.com/modules_by_category.html) to install software onto the target computer.
 
 ## Step 3: Enable
 

@@ -15,7 +15,12 @@ It complements the official documentation written by the great folks over at Ans
 
 I've written this book primarily for developers who currently do some sysadmin work too, and who are looking to use Ansible to start automating provisioning and deployments.  If you're a full-time sysadmin who is new to Ansible, you'll also get a lot out of this book.
 
-You will need to be comfortable doing basic Linux administration from the command-line.  Most of the examples are for Ubuntu 13.10.
+<div class="callout info" markdown="1">
+#### What You Already Need To Know
+You will need to be comfortable doing basic Linux administration from the command-line.
+
+Most of the examples are for Ubuntu 13.10.  If you are using a different Linux distribution or operating system, you will need to be comfortable translating the examples to your chosen operating system.  Or, you could just run Ubuntu inside a Virtualbox virtual machine :)
+</div>
 
 ## What Will You Learn From This Book?
 
@@ -36,6 +41,12 @@ This book is _task-oriented_: it teaches you how to get things done using Ansibl
 * how to [manage the Ansible inventory](managing-the-inventory.html) as you start to use Ansible on more computers
 
 The book finishes with a collection of [miscellaneous tips](miscellaneous-tips.html) that will save you time and trouble as you use Ansible further.
+
+<div class="callout info" markdown="1">
+#### Ansible Official Documentation
+
+You should read this book alongside the [official Ansible docs](http://docs.ansible.com).  They contain a lot of useful reference information, especially [the Module list](http://docs.ansible.com/modules_by_category.html) and advanced features that aren't covered in this book.
+</div>
 
 ## Why Learn From Me?
 

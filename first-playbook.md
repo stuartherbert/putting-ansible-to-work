@@ -25,31 +25,51 @@ cd ~/ansible-playbooks
 mkdir -p inventory/group_vars
 mkdir -p inventory/host_vars
 mkdir plays
+mkdir roles
 </pre>
+
+<div class="callout info" markdown="1">
+#### What This Does
+
+* __inventory__ holds information about the target computers
+* __plays__ contains the list of what changes to make to target computers
+* __roles__ contains the instructions on how to make changes to target computers
+
+</div>
 
 Save the following into the file `~/ansible-playbooks/ansible.cfg`:
 
 <pre>
 [defaults]
 hostfile=inventory/
+roles_path=roles
 </pre>
+
+<div class="callout info" markdown="1">
+#### What This Does
+
+* __ansible.cfg__ is loaded when you run any Ansible commands
+* __hostfile=inventory__ tells Ansible where to find the Inventory
+* __roles_path=roles__ tells Ansible to search the `roles/` folder when looking for a role
+
+</div>
 
 ### Create The Curl Role
 
 Create the folder where the [tasks](key-concepts.html#tasks) for the 'curl' role will live:
 
 <pre>
-mkdir -p ~/ansible-playbooks/plays/curl/tasks
+mkdir -p ~/ansible-playbooks/roles/curl/tasks
 </pre>
 
-Save the following into the file `~/ansible-playbooks/plays/curl/tasks/main.yml`:
+Save the following into the file `~/ansible-playbooks/roles/curl/tasks/main.yml`:
 
 <pre>
 ---
-- include: curl-install.yml
+- include: install.yml
 </pre>
 
-Save the following into the file `~/ansible-playbooks/plays/curl/tasks/curl-install.yml`:
+Save the following into the file `~/ansible-playbooks/roles/curl/tasks/install.yml`:
 
 <pre>
 ---
@@ -57,6 +77,16 @@ Save the following into the file `~/ansible-playbooks/plays/curl/tasks/curl-inst
   action: apt pkg=curl state=latest
   sudo: true
 </pre>
+
+<div class="callout info" markdown="1">
+#### What This Does
+
+The __curl__ role tells Ansible how to install Ubuntu's _curl_ package:
+
+* When the __curl__ role runs, Ansible executes the instructions in `tasks/main.yml` inside the `roles/curl/` folder.
+* `tasks/main.yml` tells Ansible to load the file `tasks/install.yml`.
+* `tasks/install.yml` tells Ansible to install Ubuntu's _curl_ package using Ansible's [apt module](http://docs.ansible.com/apt_module.html).
+</div>
 
 ### Create The Web-Dev Play
 
@@ -69,6 +99,12 @@ Save the following into the file `~/ansible-playbooks/plays/web-dev.yml`
   - curl
 </pre>
 
+<div class="callout info" markdown="1">
+#### What This Does
+
+`plays/web-dev.yml` tells Ansible to apply the __curl__ role to every target computer in the __web-dev__ group.
+</div>
+
 ### Add The Play To The Playbook
 
 Save the following into the file `~/ansible-playbooks/site.yml`
@@ -77,6 +113,14 @@ Save the following into the file `~/ansible-playbooks/site.yml`
 ---
 - include: plays/web-dev.yml
 </pre>
+
+<div class="callout info" markdown="1">
+#### What This Does
+
+`site.yml` tells Ansible to load the file `plays/web-dev.yml`.
+
+Ansible does not automatically search for plays on disk.  You have to add all your plays to `site.yml` if you want Ansible to load them.
+</div>
 
 ### Add Your Computer To The Inventory
 
@@ -87,12 +131,26 @@ Save the following into the file `~/ansible-playbooks/inventory/hosts`
 localhost
 </pre>
 
+<div class="callout info" markdown="1">
+#### What This Does
+
+This tells Ansible that __localhost__ is a computer in the group __web-dev__.
+
+Plays like `plays/web-dev.yml` that we created earlier state which group that they should be run against.
+</div>
+
 Save the following into the file `~/ansible-playbooks/inventory/host_vars/localhost.yml`
 
 <pre>
 ---
 ansible_connection: local
 </pre>
+
+<div class="callout info" markdown="1">
+#### What This Does
+
+This tells Ansible that __localhost__ is the same computer that you're running Ansible on, and that it doesn't need to try and login via SSH to run plays on __localhost__.  This makes Ansible a bit faster when you're using it to provision software on your own computer.
+</div>
 
 Congratulations.  You've just created your first playbook.
 
@@ -128,7 +186,7 @@ Congratulations.  You've just run your first playbook.
 
 ## What Did We Just Do?
 
-We've just done the following:
+We've performed all of the common tasks that you'll do when working with Ansible.
 
 1. Created a folder structure to hold all of our files for Ansible.
 
