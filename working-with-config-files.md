@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Working With Config Files
-prev: '<a href="building-roles.html">Prev: Building Roles</a>'
+prev: '<a href="temporary-install-scripts.html">Prev: Using Temporary Install Scripts</a>'
 next: '<a href="restarting-services.html">Next: Restarting Services</a>'
 ---
 

@@ -2,7 +2,7 @@
 layout: top-level
 title: Restarting Services
 prev: '<a href="working-with-config-files.html">Prev: Working With Config Files</a>'
-next: '<a href="adding-dependencies-to-roles.html">Next: Adding Dependencies To Roles</a>'
+next: '<a href="making-roles-repeatable.html">Next: Making Roles Repeatable</a>'
 ---
 
 # Restarting Services

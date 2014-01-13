@@ -2,7 +2,7 @@
 layout: top-level
 title: Using Temporary Install Scripts
 prev: '<a href="building-software-from-source.html">Prev: Building Software From Source</a>'
-next: '<a href="using-meta-roles.html">Next: Using Meta-Roles</a>'
+next: '<a href="working-with-config-files.html">Next: Working With Config Files</a>'
 ---
 
 # Using Temporary Install Scripts

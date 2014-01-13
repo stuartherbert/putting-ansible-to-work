@@ -1,8 +1,8 @@
 ---
 layout: top-level
 title: Adding Dependencies To Roles
-prev: '<a href="restarting-services.html">Prev: Restarting Services</a>'
-next: '<a href="making-roles-repeatable.html">Next: Making Roles Repeatable</a>'
+prev: '<a href="debugging-failing-roles.html">Prev: Debugging Failing Ansible Roles</a>'
+next: '<a href="using-meta-roles.html">Next: Using Meta-Roles</a>'
 ---
 
 # Adding Dependencies To Roles

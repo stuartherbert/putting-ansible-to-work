@@ -1,8 +1,8 @@
 ---
 layout: top-level
 title: Organising Your Ansible Files
-prev: '<a href="first-playbook.html">Prev: Your First Playbook</a>'
-next: '<a href="building-roles.html">Next: Building Roles</a>'
+prev: '<a href="how-tasks-work.html">Prev: How Tasks Work</a>'
+next: '<a href="planning-a-role.html">Next: Planning A Role</a>'
 ---
 
 # Organising Your Ansible Files

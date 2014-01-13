@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Building Software From Source
-prev: '<a href="debugging-failing-roles.html">Prev: Debugging Failing Ansible Roles</a>'
+prev: '<a href="installing-software.html">Prev: Installing Software Using Ansible</a>'
 next: '<a href="temporary-install-scripts.html">Next: Using Temporary Install Scripts</a>'
 ---
 
