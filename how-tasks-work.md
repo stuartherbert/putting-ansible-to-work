@@ -7,11 +7,11 @@ next: '<a href="organising-your-ansible-files.html">Next: Organising Your Ansibl
 
 # How Tasks Work
 
-You've just run your first playbook, which gives you a working example that you can experiment with.  Before we go any further, let's take advantage of that and look at _tasks_.
+You've just built and executed your first playbook, which gives you a working example that you can experiment with.  We're about to look at the overall structure of the playbook before diving into roles.  Before we do that though, I want to tell you a lot more about _tasks_, as they're fundamental to making roles actually do anything.
 
 ## What Is A Task?
 
-A task is a single _name / action_ statement.  It tells Ansible what to do (the _action_), and what to tell the user it is doing (the _name_).
+A task is set of statements stored in a YAML file.  It tells Ansible what to do (the _action_), and what to tell the user it is doing (the _name_).
 
 Here's the task from the Curl role you created when you built your first playbook:
 
@@ -23,12 +23,16 @@ Here's the task from the Curl role you created when you built your first playboo
 </pre>
 
 <div class="callout info" markdown="1">
-#### What does each line say?
+#### What Does Each Line Say?
+
+Each line is called a _statement_, and it tells Ansible something about the task.
 
 * __name: install Curl__ tells Ansible to print _install Curl_ on the screen when this task runs (so that you know what Ansible is currently doing)
 * __action: apt__ tells Ansible to call the [apt module](http://docs.ansible.com/apt_module.html).
 * _pkg=curl_ and _state=latest_ are parameters for the apt module.
 * __sudo: true__ tells Ansible that this task needs to be run by `root`
+
+I've compiled a list of valid statements for you; you'll find it later in this chapter.
 </div>
 
 ## Where Do Tasks Live?
@@ -38,7 +42,7 @@ When Ansible executes a role, it looks for the file `tasks/main.yml` inside the 
 You can put your tasks into additional files, and `include:` them from `tasks/main.yml`.
 
 <div class="callout info" markdown="1">
-#### Why split your tasks across files?
+#### Why Split Your Tasks Across Files?
 
 There are two main reasons: readability, and to make it easy to skip tasks.
 
@@ -72,6 +76,20 @@ Use a hyphen at the beginning of the line to start a new task or `include:`.  Th
 At the time of writing, there isn't a handy list of these in the official Ansible docs that I can point you at.
 
 Here's all of the prefixes that I know about, and a brief description of what they do.  There will be some that I've never come across, and by the time you read this, new statements may have been added to Ansible too.
+
+* name:
+* action:
+* sudo:
+* sudo_user:
+* with_items:
+* notify:
+* remote_user:
+* ignore_errors:
+* register:
+* when:
+* meta:
+
+Let's look at each of these in detail.
 
 ## name:
 
