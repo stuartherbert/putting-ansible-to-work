@@ -65,9 +65,9 @@ You'll also find more information about playbook repos in the official Ansible d
 
 ## Playbook
 
-A _playbook_ is the contents of your _playbook repo_.  It's a sporting term: the playbook contains all of the different [plays](#plays) that are available to perform - i.e. all of the different provisioning instructions that Ansible can carry out.
+The _playbook_ is the contents of your _playbook repo_.  It's a sporting term: the playbook contains all of the different [plays](#plays) that are available to perform - i.e. all of the different provisioning instructions that Ansible can carry out.
 
-You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation, and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  I'll do my best to keep the two terms separate in this book.
+You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation, and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  This can be confusing at first.  I'll do my best to keep the two terms separate in this book.
 
 I cover the playbook in these chapters:
 
@@ -142,7 +142,7 @@ You'll also find more information about roles in the official Ansible docs:
 
 A _task_ is a YAML file stored inside a [role](#roles)'s folder.  It contains instructions that tell Ansible how to apply a role to the target computer.  A role must contain at least one task file, and can contain more than one.
 
-Tasks are such an integral part of roles that they're not discussed in their own chapter.  You'll find information about them in every chapter that discusses roles.
+Tasks are so important that I've dedicated a chapter to explaining [how tasks work](how-tasks-work.html).  You'll also find information about them in every chapter that discusses roles.
 
 The same applies to the official Ansible docs.
 

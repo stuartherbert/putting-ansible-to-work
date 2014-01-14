@@ -7,13 +7,15 @@ next: '<a href="why-ansible.html">Next: Why Ansible?</a>'
 
 # Introduction
 
-This is a book on getting started with Ansible, an open-source software provisioning tool that is starting to find an audience amongst developers who also do some sysadmin work.  (Plenty of sysadmins are adopting it too).
+This is a getting started guide for Ansible, an open-source software provisioning tool that is starting to find an audience amongst developers who also do some sysadmin work.  (Plenty of sysadmins are adopting it too).
 
-It complements the official documentation written by the great folks over at AnsibleWorks.
+It complements the official documentation written by the folks over at AnsibleWorks.
 
 ## Who Is This Book For?
 
-I've written this book primarily for developers who currently do some sysadmin work too, and who are looking to use Ansible to start automating provisioning and deployments.  If you're a full-time sysadmin who is new to Ansible, you'll also get a lot out of this book.
+I've written this book for developers who do some sysadmin work too, and who are interested in using Ansible to start automating provisioning and deployments.
+
+If you're a full-time sysadmin who is new to Ansible, you'll also get a lot out of this book.
 
 <div class="callout info" markdown="1">
 #### What You Already Need To Know
@@ -24,7 +26,7 @@ Most of the examples are for Ubuntu 13.10.  If you are using a different Linux d
 
 ## What Will You Learn From This Book?
 
-This book is _task-oriented_: it teaches you how to get things done using Ansible:
+This book will teach you how to get things done using Ansible:
 
 * the [key concepts](key-concepts.html) behind how Ansible works, and where to find more information about them in the official Ansible documentation
 * how to [install Ansible](installing-ansible.html) and how to [prepare a computer to be provisioned by Ansible](preparing-a-computer.html)
@@ -47,7 +49,7 @@ The book finishes with a collection of [miscellaneous tips](miscellaneous-tips.h
 <div class="callout info" markdown="1">
 #### Ansible Official Documentation
 
-You should read this book alongside the [official Ansible docs](http://docs.ansible.com).  They contain a lot of useful reference information, especially [the Module list](http://docs.ansible.com/modules_by_category.html) and advanced features that aren't covered in this book.
+Read this book alongside the [official Ansible docs](http://docs.ansible.com).  They contain a lot of useful reference information, especially [the Module list](http://docs.ansible.com/modules_by_category.html) and advanced features that aren't covered in this book.
 </div>
 
 ## Why Learn From Me?

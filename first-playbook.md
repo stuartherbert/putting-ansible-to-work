@@ -7,15 +7,15 @@ next: '<a href="how-tasks-work.html">Next: How Tasks Work</a>'
 
 # Your First Playbook
 
-For your first playbook, we're going to automate installing [Curl](http://curl.haxx.se/) onto your computer.  This is a trivial example, which we'll build on in later chapters.
+For your first playbook, we're going to automate installing [Curl](http://curl.haxx.se/) onto your computer.  Although it is a simple example, to build it you're going to perform many of the tasks that you need to master to work with Ansible.
 
 Rather than download a ready-made example repo, I want you to create your first playbook by hand, by following the instructions below.  Doing so will help you learn what goes where.  (It's fine to cut and paste to avoid typing errors, btw.)
 
-## Create A Skeleton Playbook Repo
+## Create Your First Playbook Repo
 
 Throughout these examples, I'm assuming that you're storing your playbook repo in `~/ansible-playbooks`.  If you decide to create it somewhere else, you'll need to adjust the examples accordingly.
 
-### Create A Structure
+### 1. Create The Structure
 
 The first thing you need to do is to create a folder structure to store your playbook in.
 
@@ -54,7 +54,7 @@ roles_path=roles
 
 </div>
 
-### Create The Curl Role
+### 2. Create The Curl Role
 
 Create the folder where the [tasks](key-concepts.html#tasks) for the 'curl' role will live:
 
@@ -88,7 +88,7 @@ The __curl__ role tells Ansible how to install Ubuntu's _curl_ package:
 * `tasks/install.yml` tells Ansible to install Ubuntu's _curl_ package using Ansible's [apt module](http://docs.ansible.com/apt_module.html).
 </div>
 
-### Create The Web-Dev Play
+### 3. Create The Web-Dev Play
 
 Save the following into the file `~/ansible-playbooks/plays/web-dev.yml`
 
@@ -105,7 +105,7 @@ Save the following into the file `~/ansible-playbooks/plays/web-dev.yml`
 `plays/web-dev.yml` tells Ansible to apply the __curl__ role to every target computer in the __web-dev__ group.
 </div>
 
-### Add The Play To The Playbook
+### 4. Add The Play To The Playbook
 
 Save the following into the file `~/ansible-playbooks/site.yml`
 
@@ -122,7 +122,7 @@ Save the following into the file `~/ansible-playbooks/site.yml`
 Ansible does not automatically search for plays on disk.  You have to add all your plays to `site.yml` if you want Ansible to load them.
 </div>
 
-### Add Your Computer To The Inventory
+### 5. Add Your Computer To The Inventory
 
 Save the following into the file `~/ansible-playbooks/inventory/hosts`
 
@@ -154,16 +154,16 @@ This tells Ansible that __localhost__ is the same computer that you're running A
 
 Congratulations.  You've just created your first playbook.
 
-## Running Your First Playbook
+## Run Your First Playbook
 
-Run your first Ansible playbook:
+Run your first Ansible playbook from the command-line:
 
 <pre>
 cd ~/ansible-playbooks
 ansible-playbook -K site.yml
 </pre>
 
-Ansible will prompt you for your sudo password.  Type it in, and press ENTER to continue.
+Ansible will prompt you for your `sudo` password.  Type it in, and press ENTER to continue.
 
 If all has gone well, you will see this on the screen:
 
@@ -218,4 +218,4 @@ We've performed all of the common tasks that you'll do when working with Ansible
 
    Finally, we've run the playbook, by telling Ansible where our playbook is.  This has executed the 'web-dev' play, which has applied the 'curl' role to the target computer 'localhost'.
 
-Although this is a trivial example, these are the same actions that you'd take no matter how complex your playbook or inventory.  Working with Ansible is a cycle of creating roles, combining them into plays, updating the Inventory with new plays and target computers, and running Ansible to execute your changes.
+These are the same actions that you will perform over and over as you build your own playbook and inventory.  Working with Ansible is a cycle of creating roles, combining them into plays, updating the Inventory with new plays and target computers, and running Ansible to execute your changes.
