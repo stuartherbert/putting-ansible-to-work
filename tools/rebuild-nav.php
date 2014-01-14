@@ -113,7 +113,7 @@ function buildPageMap($toc)
 function buildSidebar($sidebar, $toc, $pages)
 {
 	// build up our sidebar HTML
-	$sidebarHtml = "<h3>This Section</h3>\n<ol>";
+	$sidebarHtml = "<h3>Contents</h3>\n<ol>";
 	foreach ($sidebar["contents"] as $filename)
 	{
 		// find the metadata about our page
