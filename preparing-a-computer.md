@@ -41,7 +41,7 @@ All virtual machines built by [vagrant](http://vagrantup.com) come with a `vagra
 
 Whichever way you go, I'm going to call this user the [remote user](key-concepts.html#remote_user) throughout the rest of this book.
 
-You can have different remote users on each target computer.  In the next chapter, I'll show you how to tell Ansible which remote user to use when you run your first playbook, and in [Managing The Inventory](managing-the-inventory.html) I'll show you how to configure Ansible so that it remembers which remote user to use for which target computer.
+You can have different remote users on each target computer.  In the next chapter, I'll show you how to tell Ansible which remote user to use when you run your first playbook, and in [Supporting Multiple Target Computers](multiple-target-computers.html) I'll show you how to configure Ansible so that it remembers which remote user to use for which target computer.
 
 ## Setup Sudo
 
@@ -69,7 +69,7 @@ If you don't want to type in your SSH key passphrase all the time, use `ssh-add`
 
 Using more than one SSH key can cause problems - not with Ansible, but with SSH itself.  When you get to over six SSH keys, you might start seeing SSH failing to authenticate against the target computer.  That's because the OpenSSH client will happily try every SSH key you've told it about using `ssh-add`, and the OpenSSH server will ban you when six keys have failed.
 
-The way around this is to make sure Ansible knows which key to use for which target computer.  I'll cover how to do this in [Managing The Inventory](managing-the-inventory.html) towards the end of this book.
+The way around this is to make sure Ansible knows which key to use for which target computer.  I'll cover how to do this in [Supporting Multiple Target Computers](multiple-target-computers.html) towards the end of this book.
 
 (Ansible does support logging into target computers via SSH using passwords, but no computer accessible from the Internet should ever allow remote access via passwords.  All it takes is one weak password, and the box can be cracked.  It's just not worth it.)
 

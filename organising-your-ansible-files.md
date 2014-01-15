@@ -1,13 +1,13 @@
 ---
 layout: top-level
 title: Organising Your Ansible Files
-prev: '<a href="how-tasks-work.html">Prev: How Tasks Work</a>'
-next: '<a href="planning-a-role.html">Next: Planning A Role</a>'
+prev: '<a href="first-playbook.html">Prev: Your First Playbook</a>'
+next: '<a href="how-tasks-work.html">Next: How Tasks Work</a>'
 ---
 
 # Organising Your Ansible Files
 
-Now that you've created your first playbook, let's look at the structure of a playbook repo in detail.  This will help you see how the files we'll create in the next few chapters fit into the overall design of a playbook.
+You've just built and executed your first playbook, which gives you a working example that you can experiment with.  Let's take a moment to walk through all the different kinds of files that Ansible expects, and where they live inside your playbook repo.  This will help you see how the files we'll create in the next few chapters fit into the overall design of a playbook.
 
 ## Playbook Repo Structure
 
@@ -18,10 +18,10 @@ ansible.cfg
 
 inventory/
     group_vars/
-    	all.yml
-    	&lt;group.yml&gt;
+        all.yml
+        &lt;group.yml&gt;
     host_vars/
-    	&lt;hostname.yml&gt;
+        &lt;hostname.yml&gt;
     hosts
 
 plays/
@@ -31,6 +31,8 @@ plays/
 roles/
     &lt;os&gt;/
         &lt;role&gt;/
+            defaults/
+                main.yml
             files/
             handlers/
                 main.yml
@@ -39,7 +41,6 @@ roles/
             tasks/
                 main.yml
             templates/
-
 site.yml
 </pre>
 
@@ -204,6 +205,10 @@ A `<role>/` folder must contain one of:
 
 otherwise it does nothing.
 
+## roles/&lt;os&gt;/&lt;role&gt;/defaults/main.yml
+
+`roles/<os>/<role>/defaults/main.yml` is a YAML file that holds any variables that the role wants to define.  These variables can be overridden from the inventory's host vars and group vars.
+
 ## roles/&lt;os&gt;/&lt;role&gt;/files/
 
 `roles/<os>/<role>/files/` is a folder that holds any files that the `<role>` copies up to the target computer.  Use the [copy module](http://docs.ansible.com/copy_module.html) to perform the upload.
@@ -265,7 +270,7 @@ For example:
   action: apt pkg=curl state=latest
 </pre>
 
-I cover tasks in detail in [Building Roles](building-roles.html) later in the book.
+I cover tasks in detail in [How Tasks Work](how-tasks-work.html) shortly, and all of the chapters on roles talk about how to use tasks.
 
 ## roles/&lt;os&gt;/&lt;role&gt;/templates/
 

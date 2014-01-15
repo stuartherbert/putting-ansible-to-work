@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Planning A Role
-prev: '<a href="organising-your-ansible-files.html">Prev: Organising Your Ansible Files</a>'
+prev: '<a href="how-tasks-work.html">Prev: How Tasks Work</a>'
 next: '<a href="installing-software.html">Next: Installing Software Using Ansible</a>'
 ---
 

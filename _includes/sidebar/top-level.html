@@ -63,24 +63,6 @@
 <li><a href="first-playbook.html#run_your_first_playbook">Run Your First Playbook</a></li>
 <li><a href="first-playbook.html#what_did_we_just_do">What Did We Just Do?</a></li>
 </ul>
-<li><a href="/putting-ansible-to-work/how-tasks-work.html">How Tasks Work</a></li>
-<ul>
-<li><a href="how-tasks-work.html#what_is_a_task">What Is A Task?</a></li>
-<li><a href="how-tasks-work.html#where_do_tasks_live">Where Do Tasks Live?</a></li>
-<li><a href="how-tasks-work.html#what_does_tasksmainyml_contain">What Does tasks/main.yml Contain?</a></li>
-<li><a href="how-tasks-work.html#what_statements_can_a_single_task_include">What Statements Can A Single Task Include?</a></li>
-<li><a href="how-tasks-work.html#name">name:</a></li>
-<li><a href="how-tasks-work.html#action">action:</a></li>
-<li><a href="how-tasks-work.html#sudo">sudo:</a></li>
-<li><a href="how-tasks-work.html#sudo_user">sudo_user:</a></li>
-<li><a href="how-tasks-work.html#with_items">with_items:</a></li>
-<li><a href="how-tasks-work.html#notify">notify:</a></li>
-<li><a href="how-tasks-work.html#remote_user">remote_user:</a></li>
-<li><a href="how-tasks-work.html#ignore_errors">ignore_errors:</a></li>
-<li><a href="how-tasks-work.html#register">register:</a></li>
-<li><a href="how-tasks-work.html#when">when:</a></li>
-<li><a href="how-tasks-work.html#meta">meta:</a></li>
-</ul>
 <li><a href="/putting-ansible-to-work/organising-your-ansible-files.html">Organising Your Ansible Files</a></li>
 <ul>
 <li><a href="organising-your-ansible-files.html#playbook_repo_structure">Playbook Repo Structure</a></li>
@@ -98,6 +80,7 @@
 <li><a href="organising-your-ansible-files.html#roles">roles/</a></li>
 <li><a href="organising-your-ansible-files.html#rolesos">roles/&lt;os&gt;/</a></li>
 <li><a href="organising-your-ansible-files.html#rolesosrole">roles/&lt;os&gt;/&lt;role&gt;/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesosroledefaultsmainyml">roles/&lt;os&gt;/&lt;role&gt;/defaults/main.yml</a></li>
 <li><a href="organising-your-ansible-files.html#rolesosrolefiles">roles/&lt;os&gt;/&lt;role&gt;/files/</a></li>
 <li><a href="organising-your-ansible-files.html#rolesosrolehandlers">roles/&lt;os&gt;/&lt;role&gt;/handlers/</a></li>
 <li><a href="organising-your-ansible-files.html#rolesosrolemeta">roles/&lt;os&gt;/&lt;role&gt;/meta/</a></li>
@@ -105,6 +88,34 @@
 <li><a href="organising-your-ansible-files.html#rolesosroletemplates">roles/&lt;os&gt;/&lt;role&gt;/templates/</a></li>
 <li><a href="organising-your-ansible-files.html#siteyml">site.yml</a></li>
 <li><a href="organising-your-ansible-files.html#building_your_playbook">Building Your Playbook</a></li>
+</ul>
+<li><a href="/putting-ansible-to-work/how-tasks-work.html">How Tasks Work</a></li>
+<ul>
+<li><a href="how-tasks-work.html#what_is_a_task">What Is A Task?</a></li>
+<li><a href="how-tasks-work.html#where_do_tasks_live">Where Do Tasks Live?</a></li>
+<li><a href="how-tasks-work.html#what_does_tasksmainyml_contain">What Does tasks/main.yml Contain?</a></li>
+<li><a href="how-tasks-work.html#what_statements_can_a_single_task_include">What Statements Can A Single Task Include?</a></li>
+<li><a href="how-tasks-work.html#name">name:</a></li>
+<li><a href="how-tasks-work.html#action">action:</a></li>
+<li><a href="how-tasks-work.html#sudo">sudo:</a></li>
+<li><a href="how-tasks-work.html#sudo_user">sudo_user:</a></li>
+<li><a href="how-tasks-work.html#remote_user">remote_user:</a></li>
+<li><a href="how-tasks-work.html#notify">notify:</a></li>
+<li><a href="how-tasks-work.html#ignore_errors">ignore_errors:</a></li>
+<li><a href="how-tasks-work.html#register">register:</a></li>
+<li><a href="how-tasks-work.html#when">when:</a></li>
+<li><a href="how-tasks-work.html#meta">meta:</a></li>
+<li><a href="how-tasks-work.html#with_items">with_items:</a></li>
+<li><a href="how-tasks-work.html#with_fileglob">with_fileglob:</a></li>
+<li><a href="how-tasks-work.html#with_together">with_together:</a></li>
+<li><a href="how-tasks-work.html#with_subelements">with_subelements:</a></li>
+<li><a href="how-tasks-work.html#with_sequence">with_sequence:</a></li>
+<li><a href="how-tasks-work.html#with_random_choice">with_random_choice:</a></li>
+<li><a href="how-tasks-work.html#with_first_found">with_first_found:</a></li>
+<li><a href="how-tasks-work.html#with_lines">with_lines:</a></li>
+<li><a href="how-tasks-work.html#with_indexed_items">with_indexed_items:</a></li>
+<li><a href="how-tasks-work.html#with_flattened">with_flattened:</a></li>
+<li><a href="how-tasks-work.html#until_retries_and_delay">until:, retries: and delay:</a></li>
 </ul>
 <li><a href="/putting-ansible-to-work/planning-a-role.html">Planning A Role</a></li>
 <ul>
@@ -141,6 +152,8 @@
 <li><a href="restarting-services.html#when_do_i_need_to_restart_services">When Do I Need To Restart Services?</a></li>
 <li><a href="restarting-services.html#creating_handlers_for_services">Creating Handlers For Services</a></li>
 <li><a href="restarting-services.html#calling_handlers_when_a_service_needs_restarting">Calling Handlers When A Service Needs Restarting</a></li>
+<li><a href="restarting-services.html#calling_handlers_before_a_play_finishes">Calling Handlers Before A Play Finishes</a></li>
+<li><a href="restarting-services.html#calling_all_queued_handlers_midway_through_a_play">Calling All Queued Handlers Mid-way Through A Play</a></li>
 </ul>
 <li><a href="/putting-ansible-to-work/making-roles-repeatable.html">Making Roles Repeatable</a></li>
 <ul>
@@ -168,17 +181,19 @@
 <ul>
 <li><a href="multiple-operating-systems.html#support_change">Support Change</a></li>
 </ul>
-<li><a href="/putting-ansible-to-work/managing-the-inventory.html">Managing The Inventory</a></li>
+<li><a href="/putting-ansible-to-work/multiple-target-computers.html">Supporting Multiple Target Computers</a></li>
 <ul>
-<li><a href="managing-the-inventory.html#naming_your_inventory_files">Naming Your Inventory Files</a></li>
-<li><a href="managing-the-inventory.html#setting_default_values_for_all_target_computers">Setting Default Values For All Target Computers</a></li>
-<li><a href="managing-the-inventory.html#setting_the_remote_user_for_a_target_computer"> Setting The Remote User For A Target Computer</a></li>
-<li><a href="managing-the-inventory.html#setting_the_ssh_key_for_a_target_computer">Setting The SSH Key For A Target Computer</a></li>
+<li><a href="multiple-target-computers.html#naming_your_inventory_files">Naming Your Inventory Files</a></li>
+<li><a href="multiple-target-computers.html#setting_default_values_for_all_target_computers">Setting Default Values For All Target Computers</a></li>
+<li><a href="multiple-target-computers.html#setting_the_remote_user_for_a_target_computer"> Setting The Remote User For A Target Computer</a></li>
+<li><a href="multiple-target-computers.html#setting_the_ssh_key_for_a_target_computer">Setting The SSH Key For A Target Computer</a></li>
+<li><a href="multiple-target-computers.html#having_different_remote_users_on_different_target_computers">Having Different Remote Users On Different Target Computers</a></li>
 </ul>
 <li><a href="/putting-ansible-to-work/miscellaneous-tips.html">Miscellaneous Tips</a></li>
 <ul>
 <li><a href="miscellaneous-tips.html#avoid_paramiko_for_now">Avoid Paramiko For Now</a></li>
 <li><a href="miscellaneous-tips.html#how_to_list_all_of_the_gathered_facts">How To List All Of The Gathered Facts</a></li>
+<li><a href="miscellaneous-tips.html#uploading_to_the_remote_users_home_folder">Uploading To The Remote User’s Home Folder</a></li>
 </ul>
 <li><a href="/putting-ansible-to-work/feedback.html">Feedback Most Welcome</a></li>
 <ul>

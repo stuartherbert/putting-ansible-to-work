@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Miscellaneous Tips
-prev: '<a href="managing-the-inventory.html">Prev: Managing The Inventory</a>'
+prev: '<a href="multiple-target-computers.html">Prev: Supporting Multiple Target Computers</a>'
 next: '<a href="feedback.html">Next: Feedback Most Welcome</a>'
 ---
 
@@ -18,3 +18,14 @@ Very early versions of Ansible got around this performance penalty by using a Py
 ## How To List All Of The Gathered Facts
 
 I've no idea - it's time that I did.
+
+## Uploading To The Remote User's Home Folder
+
+If you want to upload a file into the remote user's home folder, use `~/` at the start of the __dest=__ path, and remember to add a __sudo: false__ statement to the task:
+
+<pre>
+---
+- name: upload new bashrc file
+  action: file src=bashrc dest=~/.bashrc mode=0644
+  sudo: false
+</pre>

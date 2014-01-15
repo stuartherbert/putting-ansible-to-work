@@ -42,7 +42,7 @@ This book will teach you how to get things done using Ansible:
 * how to [add dependencies to your Ansible roles](adding-dependencies-to-roles.html)
 * how to use [meta-roles](using-meta-roles.html) to simplify your playbooks as complexity grows
 * how to [support multiple operating systems](multiple-operating-systems.html) from the same, single Ansible repo
-* how to [manage the Ansible inventory](managing-the-inventory.html) as you start to use Ansible on more computers
+* how to [support multiple target computers](multiple-target-computers.html) from the same, single Ansible repo
 
 The book finishes with a collection of [miscellaneous tips](miscellaneous-tips.html) that will save you time and trouble as you use Ansible further.
 

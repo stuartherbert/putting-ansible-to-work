@@ -1,11 +1,11 @@
 ---
 layout: top-level
-title: Managing The Inventory
+title: Supporting Multiple Target Computers
 prev: '<a href="multiple-operating-systems.html">Prev: Supporting Multiple Operating Systems</a>'
 next: '<a href="miscellaneous-tips.html">Next: Miscellaneous Tips</a>'
 ---
 
-# Managing The Inventory
+# Supporting Multiple Target Computers
 
 ## Naming Your Inventory Files
 
@@ -18,3 +18,31 @@ Put these in group_vars/all.yml.
 ## Setting The Remote User For A Target Computer
 
 ## Setting The SSH Key For A Target Computer
+
+## Having Different Remote Users On Different Target Computers
+
+{% raw %}
+
+<pre>
+---
+# file: site.yml
+- hosts: all
+  remote_user: "{{ remote_user }}"
+
+- include: play1.yml
+- include: play2.yml
+</pre>
+
+<pre>
+---
+# file: inventory/host_vars/host1.yml
+remote_user: ec2-user
+</pre>
+
+<pre>
+---
+# file: inventory/host_vars/host2.yml
+remote_user: vagrant
+</pre>
+
+{% endraw %}
