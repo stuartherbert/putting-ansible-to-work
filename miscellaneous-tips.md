@@ -17,7 +17,26 @@ Very early versions of Ansible got around this performance penalty by using a Py
 
 ## How To List All Of The Gathered Facts
 
-I've no idea - it's time that I did.
+<pre>
+ansible &lt;hostname&gt; -m setup
+</pre>
+
+`<hostname>` must be a host listed in the Inventory.
+
+## How To Gather Even More Facts
+
+Ansible's built-in fact gathering generates a pretty comprehensive list.  If factor or ohai are installed on the target computer, Ansible will also use them to gather facts.
+
+<pre>
+# Ubuntu, Debian
+sudo apt-get install facter ohai
+</pre>
+
+<div class="callout warning" markdown="1">
+#### Will You Use The Facts?
+
+Gathering facts using facter and ohai takes time, and adds to how long it takes your playbook to run against a target machine.  If you're not going to use the facts in your playbook, do you really need to gather them in the first place?
+</div>
 
 ## Uploading To The Remote User's Home Folder
 
