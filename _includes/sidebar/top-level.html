@@ -75,17 +75,17 @@
 <li><a href="organising-your-ansible-files.html#inventoryhost_varshostnameyml">inventory/host_vars/&lt;hostname.yml&gt;</a></li>
 <li><a href="organising-your-ansible-files.html#inventoryhosts">inventory/hosts</a></li>
 <li><a href="organising-your-ansible-files.html#plays">plays/</a></li>
-<li><a href="organising-your-ansible-files.html#playsos">plays/&lt;os&gt;/</a></li>
-<li><a href="organising-your-ansible-files.html#playsosplayyml">plays/&lt;os&gt;/&lt;play.yml&gt;</a></li>
+<li><a href="organising-your-ansible-files.html#playsplayyml">plays/&lt;play.yml&gt;</a></li>
 <li><a href="organising-your-ansible-files.html#roles">roles/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesos">roles/&lt;os&gt;/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosrole">roles/&lt;os&gt;/&lt;role&gt;/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosroledefaultsmainyml">roles/&lt;os&gt;/&lt;role&gt;/defaults/main.yml</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosrolefiles">roles/&lt;os&gt;/&lt;role&gt;/files/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosrolehandlers">roles/&lt;os&gt;/&lt;role&gt;/handlers/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosrolemeta">roles/&lt;os&gt;/&lt;role&gt;/meta/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosroletasks">roles/&lt;os&gt;/&lt;role&gt;/tasks/</a></li>
-<li><a href="organising-your-ansible-files.html#rolesosroletemplates">roles/&lt;os&gt;/&lt;role&gt;/templates/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesrole">roles/&lt;role&gt;/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesroledefaultsmainyml">roles/&lt;role&gt;/defaults/main.yml</a></li>
+<li><a href="organising-your-ansible-files.html#rolesrolefiles">roles/&lt;role&gt;/files/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesrolehandlers">roles/&lt;role&gt;/handlers/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesrolelibrary">roles/&lt;role&gt;/library/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesrolemeta">roles/&lt;role&gt;/meta/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesroletasks">roles/&lt;role&gt;/tasks/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesroletemplates">roles/&lt;role&gt;/templates/</a></li>
+<li><a href="organising-your-ansible-files.html#rolesrolevars">roles/&lt;role&gt;/vars/</a></li>
 <li><a href="organising-your-ansible-files.html#siteyml">site.yml</a></li>
 <li><a href="organising-your-ansible-files.html#building_your_playbook">Building Your Playbook</a></li>
 </ul>
@@ -96,7 +96,7 @@
 <li><a href="how-tasks-work.html#what_does_tasksmainyml_contain">What Does tasks/main.yml Contain?</a></li>
 <li><a href="how-tasks-work.html#what_statements_can_a_single_task_include">What Statements Can A Single Task Include?</a></li>
 <li><a href="how-tasks-work.html#name">name:</a></li>
-<li><a href="how-tasks-work.html#action">action:</a></li>
+<li><a href="how-tasks-work.html#action_and_module">action: and &lt;module&gt;:</a></li>
 <li><a href="how-tasks-work.html#sudo">sudo:</a></li>
 <li><a href="how-tasks-work.html#sudo_user">sudo_user:</a></li>
 <li><a href="how-tasks-work.html#remote_user">remote_user:</a></li>
@@ -189,10 +189,13 @@
 <li><a href="multiple-target-computers.html#setting_the_ssh_key_for_a_target_computer">Setting The SSH Key For A Target Computer</a></li>
 <li><a href="multiple-target-computers.html#having_different_remote_users_on_different_target_computers">Having Different Remote Users On Different Target Computers</a></li>
 </ul>
+<li><a href="/putting-ansible-to-work/ansibleworks-galaxy.html">Using Third-Party Roles From AnsibleWorks Galaxy</a></li>
 <li><a href="/putting-ansible-to-work/miscellaneous-tips.html">Miscellaneous Tips</a></li>
 <ul>
 <li><a href="miscellaneous-tips.html#avoid_paramiko_for_now">Avoid Paramiko For Now</a></li>
 <li><a href="miscellaneous-tips.html#how_to_list_all_of_the_gathered_facts">How To List All Of The Gathered Facts</a></li>
+<li><a href="miscellaneous-tips.html#how_to_gather_even_more_facts">How To Gather Even More Facts</a></li>
+<li><a href="miscellaneous-tips.html#run_a_single_play_on_a_single_computer">Run A Single Play On A Single Computer</a></li>
 <li><a href="miscellaneous-tips.html#uploading_to_the_remote_users_home_folder">Uploading To The Remote User’s Home Folder</a></li>
 </ul>
 <li><a href="/putting-ansible-to-work/feedback.html">Feedback Most Welcome</a></li>

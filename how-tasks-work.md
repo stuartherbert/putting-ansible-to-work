@@ -18,8 +18,10 @@ Here's the task from the Curl role you created when you built your first playboo
 
 <pre>
 ---
-- name: install Curl
-  action: apt pkg=curl state=latest
+- name: "Ubuntu: install Curl"
+  apt:
+    pkg: curl
+    state: latest
   sudo: true
 </pre>
 
@@ -28,9 +30,9 @@ Here's the task from the Curl role you created when you built your first playboo
 
 Each line is called a _statement_, and it tells Ansible something about the task.
 
-* __name: install Curl__ tells Ansible to print _install Curl_ on the screen when this task runs (so that you know what Ansible is currently doing)
-* __action: apt__ tells Ansible to call the [apt module](http://docs.ansible.com/apt_module.html).
-* _pkg=curl_ and _state=latest_ are parameters for the apt module.
+* __name: "Ubuntu: install Curl"__ tells Ansible to print _Ubuntu: install Curl_ on the screen when this task runs (so that you know what Ansible is currently doing)
+* __apt:__ tells Ansible to call the [apt module](http://docs.ansible.com/apt_module.html).  This line is known as the _action statement_.
+* _pkg: curl_ and _state: latest_ are parameters for the apt module.
 * __sudo: true__ tells Ansible that this task needs to be run by `root`
 
 I've compiled a list of valid statements for you and what they do; you'll find it later in this chapter.
@@ -45,15 +47,13 @@ You can put your tasks into additional files, and `include:` them from `tasks/ma
 <div class="callout info" markdown="1">
 #### Why Split Your Tasks Across Files?
 
-There are two main reasons: readability, and to make it easy to skip tasks.
-
-* `main.yml` is a very ambiguous name (and it is one that is reused in other places in Ansible for other things).  When someone looks at a `tasks/` folder, and only sees `main.yml`, they cannot immediately see the structure of your task.  Splitting up the tasks into `inspect.yml`, `install.yml` and `enable.yml` (which I'm going to show you how to do in [Planning A Role](planning-a-role.html)) makes it really obvious what your tasks are trying to achieve.
-
-  This is very important when you're sharing your Ansible playbook with colleagues who don't edit the playbook very often.
+There are two main reasons: to make it easy to skip tasks, and for [multiple operating system support](multiple-operating-systems.html):
 
 * Ansible doesn't have an `if` statement as such.  It has a `when:` statement that can be added to both tasks and `include:` statements.  Adding a `when:` statement to each task in a file gets tedious very quickly, and creates a lot of duplication and clutter.  Adding a `when:` statement to an `include:` statement allows you to skip every task in the included file in one go.
 
   We're going to take advantage of that when I show you how to [make roles repeatable](making-roles-repeatable.html).
+
+* Instead of creating different roles for different operating systems, the Ansible way is to have each role support every operating system that you need it to work on.  Putting the instructions for each operating system into seperate files keeps things well-organised.  It also means you don't have to put `when:` statements to skip other operating systems on each task, just on each `include:` statement in `tasks/main.yml`.
 </div>
 
 ## What Does tasks/main.yml Contain?
@@ -64,10 +64,14 @@ Use a hyphen at the beginning of the line to start a new task or `include:`.  Th
 
 <pre>
 ---
+# an example task
 - name: install Curl
-  action: apt pkg=curl state=latest
+  apt:
+    pkg: curl
+    state: latest
   sudo: true
 
+# example include statements
 - include: another-task.yml
 - include: yet-another-task.yml
 </pre>
@@ -79,7 +83,7 @@ At the time of writing, there isn't a handy list of these in the official Ansibl
 Here's all of the prefixes that I know about, and a brief description of what they do.  There will be some that I've never come across, and by the time you read this, new statements may have been added to Ansible too.
 
 * name:
-* action:
+* action: or &lt;module&gt;:
 * sudo:
 * sudo_user:
 * remote_user:
@@ -99,7 +103,6 @@ Here's all of the prefixes that I know about, and a brief description of what th
 * with_indexed_items:
 * with_flattened:
 
-
 Let's look at each of these in detail.
 
 ## name:
@@ -111,7 +114,7 @@ __name:__ has two purposes:
 
 __name:__ is normally the first statement in every task, just because that makes the task is easier to read.
 
-## action:
+## action: and &lt;module&gt;:
 
 __action:__'s call modules.  Modules are (effectively) the code libraries that make changes on the target computer.
 
@@ -142,8 +145,8 @@ At the time of writing, each individual task in Ansible can only contain one __a
 If you need to perform two or more __action:__s, you will need to create a separate task for each __action:__.
 </div>
 
-<div class="callout warning" markdown="1">
-#### Always Include The action: Prefix
+<div class="callout info" markdown="1">
+#### action: is Optional
 
 When you read the official Ansible docs, you'll notice that most of the examples shown miss out the __action:__ at the start of the module line.  For example, instead of:
 
@@ -157,17 +160,15 @@ the official docs will show:
 
 <pre>
 - name: install Curl
-  apt: pkg=curl state=latest
+  apt:
+    pkg: curl
+    state: latest
   sudo: true
 </pre>
 
 Both are equally valid.
 
-The __action:__ prefix is the original way to do it, and I recommend that you always include the __action:__ prefix in your tasks, for one simple reason.
-
-As more and more modules are added to Ansible, the module names are going to start to clash with the prefixes for the other lines you can have in a task.  (This has already happened once, when the [user module](http://docs.ansible.com/user_module.html) was added to Ansible.)
-
-Common sense dictates that something will have to give at some point in the future, especially if someone builds an npm / composer-like package ecosystem for Ansible.  Using the __action:__ prefix should ensure your tasks continue to work when that point is reached.
+The __action:__ prefix is the original way to do it, and using the module's name directly is the current recommended way to do it.
 </div>
 
 ## sudo:
@@ -226,7 +227,9 @@ __notify:__ tells Ansible to call a handler after the task has completed.
 <pre>
 ---
 - name: install Apache
-  action: apt pkg=apache2 state=latest
+  apt:
+    pkg: apache2
+    state: latest
   sudo: true
   notify:
   - restart Apache2
@@ -255,7 +258,7 @@ If a task fails, Ansible's default behaviour is to treat it as a fatal error, an
 
 <pre>
 - name: restart Apache2
-  action: /etc/init.d/apache2 restart
+  command: /etc/init.d/apache2 restart
   sudo: true
   ignore_errors: true
 </pre>
@@ -267,7 +270,7 @@ __register:__ tells Ansible to capture the output of a command and store it as a
 <pre>
 ---
 - name: how many CPUs are available for compiling?
-  action: command nproc
+  command: nproc
   register: env_cpus_found
 </pre>
 
@@ -278,12 +281,12 @@ This looks reasonable, but isn't valid:
 
 <pre>
 - name: how many CPUs are available for compiling?
-  action: command nproc
+  command: nproc
   register: env_cpus_found
 
 # this will not work
 - name: compile libfoo
-  action: make -j {{env_cpus_found}}
+  command: make -j {{env_cpus_found}}
 </pre>
 
 `env_cpus_found` is an object, not a string.  Ansible has to create an object, so that it can store the command's stdout and stderr output, in case you need to tell them apart.
@@ -291,7 +294,7 @@ This looks reasonable, but isn't valid:
 <pre>
 # this will work
 - name: compile libfoo
-  action: make -j {{env_cpus_found.stdout}}
+  command: make -j {{env_cpus_found.stdout}}
 </pre>
 
 It's confusing because variables loaded from the Inventory and facts gathered from each target computer are nominally strings rather than objects.  This is going to catch you out the first few times.
@@ -304,12 +307,12 @@ __when:__ is the closest that Ansible has to an `if` statement.  Use __when:__ i
 <pre>
 # this runs every time
 - name: is /tmp full?
-  action: shell df -k /tmp | tail -n 1 | awk '{ print $5 }' | tr -d '%'
+  shell: df -k /tmp | tail -n 1 | awk '{ print $5 }' | tr -d '%'
   register: tmp_percentage
 
 # this is skipped if /tmp is less than 95% full
 - name: empty /tmp
-  action: shell find /tmp -atime 7 -print0 | xargs rm -rf
+  shell: find /tmp -atime 7 -print0 | xargs rm -rf
   when: tmp_percentage.stdout|int >=95
 </pre>
 

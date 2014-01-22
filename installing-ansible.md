@@ -54,7 +54,7 @@ Finally, install Ansible from Github:
 # Ubuntu, Debian
 git clone https://github.com/ansible/ansible.git
 cd ansible
-sudo make install
+sudo python setup.py
 </pre>
 
 Ansible is now ready to run from your computer.

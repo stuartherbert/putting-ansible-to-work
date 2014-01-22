@@ -2,7 +2,7 @@
 layout: top-level
 title: Supporting Multiple Target Computers
 prev: '<a href="multiple-operating-systems.html">Prev: Supporting Multiple Operating Systems</a>'
-next: '<a href="miscellaneous-tips.html">Next: Miscellaneous Tips</a>'
+next: '<a href="ansibleworks-galaxy.html">Next: Using Third-Party Roles From AnsibleWorks Galaxy</a>'
 ---
 
 # Supporting Multiple Target Computers

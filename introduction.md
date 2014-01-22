@@ -43,6 +43,7 @@ This book will teach you how to get things done using Ansible:
 * how to use [meta-roles](using-meta-roles.html) to simplify your playbooks as complexity grows
 * how to [support multiple operating systems](multiple-operating-systems.html) from the same, single Ansible repo
 * how to [support multiple target computers](multiple-target-computers.html) from the same, single Ansible repo
+* how to [download and use roles written by other people](ansibleworks-galaxy.html) from [AnsibleWorks Galaxy](http://galaxy.ansibleworks.com)
 
 The book finishes with a collection of [miscellaneous tips](miscellaneous-tips.html) that will save you time and trouble as you use Ansible further.
 
@@ -56,7 +57,7 @@ Read this book alongside the [official Ansible docs](http://docs.ansible.com).  
 
 I've been using Ansible daily since November 2012 in my day job at DataSift, where I use it to build dev and test environments large and small.  I've had fourteen months to make lots of mistakes and figure out which approaches stand the test of time, and why they work.  I've put the results into this book for you.
 
-I've been building and managing UNIX and Linux servers connected to the Internet for 20 years.
+I've been building and managing production UNIX and Linux servers connected to the Internet for 20 years.  I've been teaching for even longer.
 
 As a developer, I've been speaking at conferences and running tutorial workshops since 2004.  I am a co-author of the Zend Certification Study Guide for PHP 4, and was one of the early contributors to [php|architect](http://www.phparch.com) magazine.  I've been contributing to and creating open-source software for 20 years, most recently [Hubflow](http://datasift.github.io/gitflow/) and [Storyplayer](http://datasift.github.io/storyplayer).
 

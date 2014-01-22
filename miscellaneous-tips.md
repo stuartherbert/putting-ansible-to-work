@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Miscellaneous Tips
-prev: '<a href="multiple-target-computers.html">Prev: Supporting Multiple Target Computers</a>'
+prev: '<a href="ansibleworks-galaxy.html">Prev: Using Third-Party Roles From AnsibleWorks Galaxy</a>'
 next: '<a href="feedback.html">Next: Feedback Most Welcome</a>'
 ---
 
@@ -37,6 +37,14 @@ sudo apt-get install facter ohai
 
 Gathering facts using facter and ohai takes time, and adds to how long it takes your playbook to run against a target machine.  If you're not going to use the facts in your playbook, do you really need to gather them in the first place?
 </div>
+
+## Run A Single Play On A Single Computer
+
+If you want to run just one play (for example, you want to make just one change to a computer),
+
+<pre>
+ansible-playbook -i inventory/&lt;hostfile&gt; -K plays/&lt;play.xml&gt;
+</pre>
 
 ## Uploading To The Remote User's Home Folder
 

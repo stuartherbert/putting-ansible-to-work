@@ -42,7 +42,7 @@ Here's why I picked Ansible:
 
 * Things happen in the order that you want.
 
-  When you run Ansible, it goes through your [playbooks](key-concepts.html#playbooks) and executes them in the order that they are written in.  Need X to happen before Y?  Simply put X in your playbooks before Y.  Sounds obvious, but when Ansible started, other tools didn't work like this.
+  When you run Ansible, it goes through your [playbooks](key-concepts.html#playbooks) and executes them in the order that they are written in.  Need X to happen before Y?  Simply put X in your playbooks before Y.  Sounds obvious, but when work on Ansible started, other tools didn't work like this.
 
 * Everything you want it to do is stored in a file.
 
@@ -52,7 +52,7 @@ Here's why I picked Ansible:
 
   You don't need to setup a server to run Ansible from.  You don't need to setup a database anywhere.  Just install Ansible on your computer, checkout your playbooks from source control, and then you're ready to run Ansible from the command-line.  Anyone can be up and running in a matter of minutes, and there's no central infrastructure to worry about maintaining.
 
-Ansible isn't the only tool that does these things, but it's the best one I've found so far that does all of these things.
+Together, they make for a great deployment automation tool.
 
 ## What Does Ansible Run On?
 

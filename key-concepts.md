@@ -18,7 +18,7 @@ When you run Ansible, on the command-line you tell it:
 * the computer or list of computers that you want to provision ([the Inventory](#inventory)), and
 * the provisioning instructions to follow ([the playbook](#playbook)).
 
-Ansible logs into each computer via SSH, and [inspects the current state](#gathering_facts).  It turns this state into [facts](#facts) - constants that your provisioning instructions can use to decide what to do and what not to do.  It's important to note that, at this point, it isn't looking to see what you have already installed onto the computer - it is looking at things like what operating system you have installed.
+Ansible logs into each computer via SSH, and [inspects the current state](#gathering_facts).  It turns this state into [facts](#facts) - constants that your provisioning instructions can use to decide what to do and what not to do.  It's important to note that, at this point, Ansible isn't looking to see what you have already installed onto the computer - it is looking at things like what operating system you have installed.
 
 Ansible then runs through the provisioning instructions, executing instructions known as [tasks](#tasks).  You will see each task scroll up the screen in turn, along with what happened:
 
@@ -36,13 +36,18 @@ At the end of a successful run, Ansible will print out a summary of how many tas
 At the time of writing, the current version of Ansible is v1.4.  Ansible is currently not [semantically versioned](http://semver.org).
 
 * Bug fixes aren't backported to old, stable releases.  You will need to upgrade to get bug fixes.
-* Currently there isn't an ecosystem around distributing third-party modules separately from Ansible (there's no [npm](https://npmjs.org/) or [composer](http://getcomposer.org)-like community yet); new modules get added to upcoming releases of Ansible.  There's an opportunity there for someone to create that community and really accelerate the adoption of Ansible.
+* New modules get added to new releases.  You will need to upgrade to get them.
 * The [official Ansible docs](http://docs.ansibleworks.com) normally track [the latest code in GitHub](https://github.com/ansible/ansible).
 * New releases can (and will) break your existing playbooks.  Upgrade early, upgrade often, and set time aside to test your playbooks after every upgrade.
 
-You might be feeling uncomfortable about managing crucial infrastructure, and be concerned about whether Ansible is stable enough to adopt.  Don't worry.  This is normal with new cutting-edge software, should settle down in time, and in my opinion is worth it at this point in Ansible's development.
-
 I will show you [how to install the latest code from GitHub](installing-ansible.html) later in this book.
+
+<div class="callout info" markdown="1">
+#### Ansible Is Ready For Production Use
+
+You might be concerned about whether Ansible is stable enough to adopt, especially after reading through the points above.  Don't worry.  This is normal with new cutting-edge software, should settle down in time, and in my opinion is worth it at this point in Ansible's development.
+</div>
+
 
 ## Playbook Repo
 
@@ -67,7 +72,7 @@ You'll also find more information about playbook repos in the official Ansible d
 
 The _playbook_ is the contents of your _playbook repo_.  It's a sporting term: the playbook contains all of the different [plays](#plays) that are available to perform - i.e. all of the different provisioning instructions that Ansible can carry out.
 
-You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation, and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  This can be confusing at first.  I'll do my best to keep the two terms separate in this book.
+You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation; and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  This can be confusing at first.  I'll do my best to keep the two terms separate in this book.
 
 I cover the playbook in these chapters:
 
@@ -82,12 +87,12 @@ A _play_ is a [YAML file](#yaml) that tells Ansible which [roles](#roles) to app
 ---
 - hosts: build-servers
   roles:
-  - cmd-gcc
-  - cmd-autotools
-  - cmd-distcc
+  - stuartherbert.gcc
+  - stuartherbert.autotools
+  - stuartherbert.distcc
 </pre>
 
-This play tells Ansible to apply the roles _cmd-gcc, cmd-autotools, cmd-distcc_ to every host in the [Inventory](#inventory) that's in the _build-servers_ set.
+This play tells Ansible to apply the roles _stuartherbert.gcc, stuartherbert.autotools, stuartherbert.distcc_ to every host in the [Inventory](#inventory) that's in the _build-servers_ set.
 
 You'll often see the terms _playbook_ and _play_ used interchangeably in the official Ansible documentation, and on the command-line, when Ansible expects a _playbook_, you can pass it a _play_ instead if you want.  I'll do my best to keep the two terms separate in this book.
 
@@ -104,17 +109,17 @@ _YAML_ is a syntax for storing structured data in plain text.  It's an alternati
 
 Most of the files you'll write for Ansible will be YAML files.  There are a few exceptions; I'll point them out when they crop up.
 
-This isn't a book about YAML, so rather than spend a lot of time talking about YAML's syntax, I've just gone ahead and included a lot of examples instead throughout the chapters.  There are times when Ansible pushes its use of YAML a bit close to the edge, which can cause syntax errors; I'll cover these as and when you're likely to run into them.
+This isn't a book about YAML, so rather than spend a lot of time talking about YAML's syntax, I've just included a lot of examples instead throughout the chapters.  I'll point out any YAML gotchas as and when we run into them.
 
 <div class="callout info" markdown="1">
-#### All YAML Files Start With ---
+#### All YAML Files Start With Three Hyphens
 
 As you work your way through the book, you'll notice that every example YAML file in the book starts with three hyphens on the first line.  This is part of the YAML spec.
 
 If you leave out the three hyphens, your YAML file won't load.
 </div>
 
-If you really want to read more about YAML, there's [an official website for YAML](http://www.yaml.org/), and AnsibleWorks have posted [their own YAML syntax walkthrough](http://docs.ansible.com/YAMLSyntax.html).
+If you really want to read more about YAML, there's [an official website for YAML](http://www.yaml.org/), and AnsibleWorks have posted their own [YAML syntax walkthrough](http://docs.ansible.com/YAMLSyntax.html).
 
 ## Roles
 
@@ -141,6 +146,8 @@ Most of the book is about roles - they are fundamental to how to work with Ansib
 * [Building Software From Source](building-software-from-source.html)
 * [Temporary Install Scripts](temporary-install-scripts.html)
 * [Using Meta-Roles](using-meta-roles.html)
+* [Supporting Multiple Operating Systems](multiple-operating-systems.html)
+* [Using Third-Party Roles From AnsibleWorks Galaxy](ansibleworks-galaxy.html)
 
 You'll also find more information about roles in the official Ansible docs:
 
@@ -163,7 +170,7 @@ I mention Ansible modules throughout the chapters that discuss [roles](#roles).
 You'll also find more information about Ansible modules in the official Ansible docs:
 
 * [About Modules](http://docs.ansible.com/modules.html)
-* [Module Index](http://docs.ansible.com/modules_by_category.html) - whenever I'm working with Ansible, I have this open in a browser tab!
+* [Module Index](http://docs.ansible.com/modules_by_category.html) - whenever I'm working with Ansible, I have this open in a browser tab or three!
 
 ## Handlers
 
@@ -281,7 +288,7 @@ You'll also find more information about host vars in the official Ansible docs:
 * [Inventory: Host Variables](http://docs.ansible.com/intro_inventory.html#host-variables)
 
 <div class="callout info" markdown="1">
-#### Not Just Key: Values
+#### Not Just Key/Value Pairs
 
 Although we're only going to store simple key/value pairs in the host vars in this book, _value_ doesn't have to be a string.  You can create nested arrays and objects too.
 </div>

@@ -25,22 +25,24 @@ inventory/
     hosts
 
 plays/
-    &lt;os&gt;/
-        &lt;play.yml&gt;
+    &lt;play.yml&gt;
 
 roles/
-    &lt;os&gt;/
-        &lt;role&gt;/
-            defaults/
-                main.yml
-            files/
-            handlers/
-                main.yml
-            meta/
-                main.yml
-            tasks/
-                main.yml
-            templates/
+    &lt;role&gt;/
+        defaults/
+            main.yml
+        files/
+        handlers/
+            main.yml
+        library/
+        meta/
+            main.yml
+        tasks/
+            main.yml
+        templates/
+        vars/
+            main.yml
+
 site.yml
 </pre>
 
@@ -143,30 +145,18 @@ Ansible will automatically load every file in the `inventory/` folder as a stati
 
 `plays/` is the folder where all of the `<play.yml>` files go, such as `web-dev.yml` from [our example first playbook repo](first-playbook.yml).
 
-The official Ansible documentation recommends that [your plays go in your top-level folder](http://docs.ansible.com/playbooks_best_practices.html#directory-layout), along with your Inventory.  In my experience, the top-level folder quickly gets very cluttered, and the less that goes there the better for long-term management.  Put your plans in a sub-folder from the very start to keep your top-level folder manageable.
+The official Ansible documentation recommends that [your plays go in your top-level folder](http://docs.ansible.com/playbooks_best_practices.html#directory-layout), along with your Inventory.  In my experience, the top-level folder quickly gets _very_ cluttered, and the less that goes there the better for long-term management.  Put your plans in a sub-folder from the very start to keep your top-level folder manageable.
 
-## plays/&lt;os&gt;/
+## plays/&lt;play.yml&gt;
 
-This is a folder that stores all plays that are valid for `<os>`, where `<os>` is the name and (optionally) the version of an operating system.  This approach makes it much easier to [support multiple operating systems](multiple-operating-systems.html) in your playbook repo.
-
-For example,
-
-<pre>
-plays/
-    ubuntu_13_04/
-    ubuntu_13_10/
-</pre>
-
-## plays/&lt;os&gt;/&lt;play.yml&gt;
-
-`plays/<os>/<play.yml>` is a YAML file that stores the list of roles to apply to every target computer that is in a given group.
+`plays/<play.yml>` is a YAML file that stores the list of roles to apply to every target computer that is in a given group.
 
 <pre>
 ---
 - hosts: &lt;group-name&gt;
   roles:
-  - &lt;os&gt;/&lt;role1&gt;
-  - &lt;os&gt;/&lt;role1&gt;
+  - &lt;role1&gt;
+  - &lt;role1&gt;
 </pre>
 
 Create a new `<play.yml>` file for every `<group-name>` that you want to use in the Inventory.  I always create one `<play.yml>` file for each group, and name them the same, so that it's always easy to find which files to read and edit when I want to remind myself what the group is for.
@@ -179,19 +169,9 @@ Plays are very powerful, and have been part of Ansible for much longer than role
 
 Ansible expects to find your `roles/` folder where your `<play.yml>` files are stored.  You must create the `ansible.cfg` file [listed above](#ansiblecfg) to make sure that Ansible looks in the `roles/` folder.
 
-## roles/&lt;os&gt;/
+## roles/&lt;role&gt;/
 
-`roles/<os>/` is a folder that stores roles that work on a specific operating system.  `<os>` is the name of the operating system, such as:
-
-* ubuntu
-* ubuntu_12_04
-* ubuntu_13_10
-
-This approach makes it much easier to [support multiple operating systems](multiple-operating-systems.html) in your playbook repo.
-
-## roles/&lt;os&gt;/&lt;role&gt;/
-
-`roles/<os>/<role>/` is a folder that contains a single role.  Ansible uses the folder name as the name of the role.
+`roles/<role>/` is a folder that contains a single role.  Ansible uses the folder name as the name of the role.
 
 Add roles to `<play.xml>` files to build up the instructions for how to provision a group of computers.  Roles that are not in a `<play.xml>` file will never get executed.
 
@@ -200,28 +180,30 @@ Create a new `<role>/` folder for every new thing that you want to install using
 A `<role>/` folder must contain one of:
 
 * `handlers/`
+* `library/`
 * `meta/`
 * `tasks/`
+* `vars/`
 
 otherwise it does nothing.
 
-## roles/&lt;os&gt;/&lt;role&gt;/defaults/main.yml
+## roles/&lt;role&gt;/defaults/main.yml
 
-`roles/<os>/<role>/defaults/main.yml` is a YAML file that holds any variables that the role wants to define.  These variables can be overridden from the inventory's host vars and group vars.
+`roles/<role>/defaults/main.yml` is a YAML file that holds any variables that the role wants to define.  These variables can be overridden from the Inventory's host vars and group vars.
 
-## roles/&lt;os&gt;/&lt;role&gt;/files/
+## roles/&lt;role&gt;/files/
 
-`roles/<os>/<role>/files/` is a folder that holds any files that the `<role>` copies up to the target computer.  Use the [copy module](http://docs.ansible.com/copy_module.html) to perform the upload.
+`roles/<role>/files/` is a folder that holds any files that the `<role>` copies up to the target computer.  Use the [copy module](http://docs.ansible.com/copy_module.html) to perform the upload.
 
-## roles/&lt;os&gt;/&lt;role&gt;/handlers/
+## roles/&lt;role&gt;/handlers/
 
-`roles/<os>/<role>/handlers/` is a folder that contains any tasks that can be triggered by other modules.  There must be a `main.yml` file in this folder which contains the tasks.  `main.yml` can include other task files if required.
+`roles/<role>/handlers/` is a folder that contains any tasks that can be triggered by other modules.  There must be a `main.yml` file in this folder which contains the tasks.  `handlers/main.yml` can include other task files if required.
 
 For example:
 
 <pre>
 ---
-# file roles/ubuntu-13.10/apache2/handlers/main.yml
+# file roles/stuartherbert.apache2/handlers/main.yml
 
 - name: restart Apache2
   action: command /etc/init.d/apache2 restart
@@ -234,49 +216,67 @@ For example:
 
 Most roles will not need to define any handlers, and won't need to have a `handlers/` folder.
 
-Handlers can be called by any role, not just the role that they are defined in.  Ansible cannot find a handler if the role that defines it hasn't been included in a `<play.xml>` file.
+Handlers can be called by any role, not just the role that they are defined in.  Ansible cannot find a handler if the role that defines it hasn't been included in a `<play.xml>` file or listed as a dependency in one of the `meta/main.yml` files.
 
 I cover handlers in detail in [Restarting Services](restarting-services.html) later in the book.
 
-## roles/&lt;os&gt;/&lt;role&gt;/meta/
+## roles/&lt;role&gt;/library/
 
-`roles/<os>/<role>/meta/` is a folder that contains a list of any roles that this role depends on.  There must be a `main.yml` file in this folder which contains the list.
+`roles/<role>/library/` is a folder that contains any Ansible modules that you've written.  Writing your own Ansible modules is an advanced topic that's beyond the scope of this book.
+
+These modules can be called by any role, not just the role that they are bundled in.  Ansible cannot find your modules if the role that they're bundled in haven't been included in a `<play.xml>` file or listed as a dependency in one of the `meta/main.yml` files.
+
+## roles/&lt;role&gt;/meta/
+
+`roles/<role>/meta/` is a folder that contains a list of any roles that this role depends on.  There must be a `main.yml` file in this folder which contains the list.
 
 For example:
 
 <pre>
 ---
-# file roles/ubuntu-13.10/mod_php/main.yml
+# file roles/stuartherbert.mod_php/meta/main.yml
 
 dependencies:
-- { role: ubuntu-13.10/apache2 }
+- { role: stuartherbert.apache2 }
 </pre>
 
 Most roles will not need to define any dependencies, and won't need to have a `meta/` folder.
 
 I cover dependencies in detail in [Adding Dependencies To Roles](adding-dependencies-to-roles.html) later in the book.
 
-## roles/&lt;os&gt;/&lt;role&gt;/tasks/
+<div class="callout info" markdown="1">
+#### AnsibleWorks Galaxy Metadata
 
-`roles/<os>/<role>/tasks/` is a folder that contains a list of tasks to execute when the role is applied to a target computer.  There must be a `main.yml` file in this folder which contains the list of tasks.  `main.yml` can include other task files if required.
+`meta/main.yml` is also used to hold metadata used by [AnsibleWorks Galaxy](http://galaxy.ansibleworks.com), such as who wrote the role and which operating systems it supports.
+</div>
+
+## roles/&lt;role&gt;/tasks/
+
+`roles/<role>/tasks/` is a folder that contains a list of tasks to execute when the role is applied to a target computer.  There must be a `main.yml` file in this folder which contains the list of tasks.  `tasks/main.yml` can include other task files if required.
 
 For example:
 
 <pre>
 ---
-# file roles/ubuntu-13.10/curl/main.yml
+# file roles/stuartherbert.curl/tasks/main.yml
 
-- name: install curl
-  action: apt pkg=curl state=latest
+- include: ubuntu_install.yml
+  when: "ansible_distribution == 'Ubuntu'"
 </pre>
 
 I cover tasks in detail in [How Tasks Work](how-tasks-work.html) shortly, and all of the chapters on roles talk about how to use tasks.
 
-## roles/&lt;os&gt;/&lt;role&gt;/templates/
+## roles/&lt;role&gt;/templates/
 
-`roles/<os>/<role>/templates/` is a folder that holds any files that the `<role>` expands using Jinja2 and then copies up to the target computer.  Use the [template module](http://docs.ansible.com/template_module.html) to perform the upload.
+`roles/<role>/templates/` is a folder that holds any files that the `<role>` expands using Jinja2 and then copies up to the target computer.  Use the [template module](http://docs.ansible.com/template_module.html) to perform the upload.
 
 I cover templates in detail in [Working With Config Files](working-with-config-files.html) later in this book.
+
+## roles/&lt;role&gt;/vars/
+
+`roles/<role>/vars/` is a folder that holds YAML files.  These YAML files contain variables that the role uses.  The files can have any name you want, and are loaded using the __include_vars:__ module.
+
+Unlike the variables defined in the 'defaults/' folder, these variables cannot be overridden in the Inventory.  I don't use them in this book at all.  You might come across them when looking at roles downloaded from AnsibleWorks Galaxy.
 
 ## site.yml
 
@@ -288,15 +288,14 @@ For example:
 ---
 # file site.yml
 
-- include: plays/centos-6/webserver.yml
-- include: plays/ubuntu-13.10/webserver.yml
-- include: plays/ubuntu-13.10/dbserver.yml
+- include: plays/webserver.yml
+- include: plays/dbserver.yml
 </pre>
 
 When you run Ansible, this is the file that you pass to it on the command line:
 
 <pre>
-ansible-playbook site.yml
+ansible-playbook -K site.yml
 </pre>
 
 It is convention that this file is called `site.yml`.  Don't be surprised if you ever come across playbook repos where the authors have given this file a different name.
