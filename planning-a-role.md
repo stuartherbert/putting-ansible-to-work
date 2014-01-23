@@ -13,15 +13,17 @@ A role tells Ansible how to make a change to the target computer.  Make every ro
 
 A role can contain any of:
 
+* _default values_ for any variables that the _handlers_, _tasks_ or _templates_ use
 * _files_ to be uploaded to the target computer
 * _handlers_ to restart services after tasks have executed
 * _metadata_ to list other roles that need to run before the current one
+* _modules_ when you need to extend Ansible
 * _tasks_ to provision software and otherwise make changes to the target computer
 * _templates_ to be expanded using Jinja2 and then uploaded to the target computer
 
 You only need
 
-* _files_ and _templates_ when [working with config files](working-with-config-files.html)
+* _default values_, _files_ and _templates_ when [working with config files](working-with-config-files.html)
 * _handlers_ when [restarting services](restarting-services.html)
 * _metadata_ when [your role needs other roles to have run first](adding-dependencies-to-roles.html)
 * _tasks_ when [installing software](installing-software.html)
