@@ -8,7 +8,7 @@
 		"key-concepts",
 		"installing-ansible",
 		"preparing-a-computer",
-		"first-playbook",
+		"your-first-playbook",
 		"organising-your-ansible-files",
 		"how-tasks-work",
 		"planning-a-role",

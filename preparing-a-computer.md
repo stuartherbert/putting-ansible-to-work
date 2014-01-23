@@ -2,7 +2,7 @@
 layout: top-level
 title: Preparing A Computer For Ansible
 prev: '<a href="installing-ansible.html">Prev: Installing Ansible</a>'
-next: '<a href="first-playbook.html">Next: Your First Playbook</a>'
+next: '<a href="your-first-playbook.html">Next: Your First Playbook</a>'
 ---
 
 # Preparing A Computer For Ansible

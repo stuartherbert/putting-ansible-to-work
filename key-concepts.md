@@ -76,7 +76,7 @@ You'll often see the terms _playbook_ and _play_ used interchangeably in the off
 
 I cover the playbook in these chapters:
 
-* [Your First Playbook](first-playbook.html)
+* [Your First Playbook](your-first-playbook.html)
 * [Organising Your Ansible Files](organising-your-ansible-files.html)
 
 ## Play

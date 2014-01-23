@@ -30,7 +30,7 @@ This book will teach you how to get things done using Ansible:
 
 * the [key concepts](key-concepts.html) behind how Ansible works, and where to find more information about them in the official Ansible documentation
 * how to [install Ansible](installing-ansible.html) and how to [prepare a computer to be provisioned by Ansible](preparing-a-computer.html)
-* how to [create your first playbook](first-playbook.html) and how to [organise your Ansible playbooks](organising-your-ansible-files.html)
+* how to [create your first playbook](your-first-playbook.html) and how to [organise your Ansible playbooks](organising-your-ansible-files.html)
 * [how tasks (the instructions that Ansible executes) work](how-tasks-work.html)
 * how to [plan every Ansible role](planning-a-role.html) by following a simple three-point plan
 * how to [install software](installing-software.html)

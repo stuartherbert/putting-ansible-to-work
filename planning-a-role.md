@@ -34,10 +34,10 @@ Each role should do a single job, and no more.  It might install a command-line 
 
 Here are some examples from [my ansible-playbooks repo on GitHub](https://github.com/stuartherbert/ansible-playbooks):
 
-* git
-* hubflow
-* nodejs
-* redis2-server
+* stuartherbert.git
+* stuartherbert.hubflow
+* stuartherbert.nodejs
+* stuartherbert.redis2-server
 
 Each of these roles installs a single software package.  In the case of the _git_ role, it's very trivial, and hardly seems worth the effort.  But here's the thing: small roles are the easiest to reuse.
 
@@ -55,59 +55,22 @@ Just as your code should be modular, so should the roles in your playbook.
 
 ## The Three-Point Plan For Every Role
 
-Follow this three-point plan when you are building a role, and you'll never go wrong:
+Follow this three-point plan when you are planning a role, and you'll never go wrong:
 
 1. __Inspect:__ Does the role need to act?
 1. __Install:__ Add software to the computer.
 1. __Enable:__ Update configuration, start services.
 
-When Ansible executes a role, it starts by loading the file `tasks/main.yml` inside the role's folder, and running the instructions it finds in there.  Put the instructions for each step into a separate YAML file, and include these files in `tasks/main.yml`.  This is the easiest way to skip the `tasks/install.yml` if the software is already installed.
+When Ansible executes a role, it starts by loading the file `tasks/main.yml` inside the role's folder, and running the instructions it finds in there.  Put the instructions for each step into a separate YAML file, and include these files in `tasks/main.yml`.  This is the easiest way to skip the install stage if the software is already installed.
 
-Here is an example for a _libzmq4_ role, which installs [ZeroMQ](http://zeromq.org) by following the three-point plan:
+<div class="callout info" markdown="1">
+#### Use Only The Steps You Need
 
-{% raw %}
+Not every role needs all three steps.
 
-<pre>
----
-# file: roles/linux/libzmq4/tasks/main.yml
-
-- include: inspect.yml
-- include: install.yml
-  when: "libzmq4_installed.stdout != 'true'"
-- include: enable.yml
-</pre>
-
-<pre>
----
-# file: roles/linux/libzmq4/tasks/inspect.yml
-
-- name: is libzmq already installed?
-  action: shell executable=/bin/bash if [[ "`pkg-config --modversion libzmq`" == "{{zeromq_version}}" ]] ; then echo 'true' ; else echo 'false' ; fi
-  sudo: False
-  register: libzmq_installed
-</pre>
-
-<pre>
----
-# file: roles/linux/libzmq4/tasks/install.yml
-
-- name: download libzmq source code
-  action: get_url url=http://download.zeromq.org/zeromq-{{zeromq_version}}.tar.gz dest=/tmp/zeromq-{{zeromq_version}}.tar.gz
-
-- name: unpack libzmq source code
-  action: command tar -C /tmp -zxf '/tmp/zeromq-{{zeromq_version}}.tar.gz' creates='/tmp/zeromq-{{zeromq_version}}'
-
-- name: configure libzmq source code
-  action: command ./configure chdir='/tmp/zeromq-{{zeromq_version}}'
-
-- name: compile libzmq source code
-  action: command make -j chdir='/tmp/zeromq-{{zeromq_version}}'
-
-- name: install libzmq
-  action: command make install chdir='/tmp/zeromq-{{zeromq_version}}'
-  sudo: True
-</pre>
-{% endraw %}
+* Simple roles, such as the __curl__ role you wrote in [Your First Playbook](your-first-playbook.html), don't need an _inspect_ phase.  They can rely on Ansible's built-in modules to only make the changes that are needed.
+* If there are no config files to install, and no services to restart, then the role doesn't need an _enable_ phase.
+</div>
 
 ## Step 1: Inspect
 
@@ -122,20 +85,78 @@ I'll cover how to perform this step in [Making Roles Repeatable](making-roles-re
 
 You are going to run your playbook against a target computer multiple times, especially when you're writing and testing a new role.
 
-You're going to waste a lot of time waiting for Ansible if your software is constantly re-installing software that has already been installed.  Even if you're willing to put up with this, chances are your colleagues won't.
+You're going to waste a lot of time waiting for Ansible if your software is constantly re-installing software that has already been installed.  Even if you're willing to put up with this, your colleagues won't.
 </div>
 
 ## Step 2: Install
 
-Use [Ansible's extensive list of modules](http://docs.ansible.com/modules_by_category.html) to install software onto the target computer.
+If the inspect stage says Use [Ansible's extensive list of modules](http://docs.ansible.com/modules_by_category.html) to install software onto the target computer.
+
+I'll cover how to perform this step in [Installing Software](installing-software.html) shortly.  You'll need to [build software from source](building-software-from-source.html) if there's no pre-built package available for your operating system.  (Sometimes, you might be tempted to use a [temporary install script](temporary-install-scripts.html), although I hope to talk you out of it later in this book!)
+
+Put this step in a separate `install.yml` or `<os>_install.yml` file so that it is easy to skip if the software is already installed, or to skip the install instructions for other operating systems.
 
 ## Step 3: Enable
 
 Once the software is installed, the software needs to be configured (if you have any configuration files to install) and (if it is a service) restarted.
 
-Put this in a separate `enable.yml` file so that it always runs even if the software is already installed.  That way, you can install configuration changes without having to re-install the software itself.
+I'll cover how to [install config files](working-with-config-files.html) and [restart services](restarting-services.html) later in this book.
 
-[Installing config files](working-with-config-files.html) and [restarting services](restarting-services.html) are covered in detail in their own chapters.
+<div class="callout info" markdown="1">
+#### Why Do We Need A Separate Enable Step?
 
-## Testing Your Role
+Put this step in a separate `enable.yml` file so that it always runs even if the software is already installed.  That way, you can install configuration changes without having to re-install the software itself.
+</div>
 
+## An Example That Follows The Three-Point Plan
+
+Here is an example for a _php-zmq_ role, which installs the PHP extension for [ZeroMQ](http://zeromq.org) by following the three-point plan:
+
+{% raw %}
+
+<pre>
+---
+# file: roles/stuartherbert.php-zmq/tasks/main.yml
+
+- include: inspect.yml
+- include: install.yml
+  when: "php_zmq_installed.stdout != 'true'"
+- include: ubuntu_enable.yml
+  when: "ansible_distribution == 'Ubuntu'"
+</pre>
+
+<pre>
+---
+# file: roles/stuartherbert.php-zmq/tasks/inspect.yml
+
+- name: is PHP zmq extension installed?
+  shell: executable=/bin/bash if `pecl list zmq > /dev/null 2>&amp;1` ; then echo true ; else echo false ; fi
+  register: php_zmq_installed
+
+- name: is PHP zmq extension installed and enabled?
+  shell: executable=/bin/bash if `php -m | grep zmq > /dev/null 2>&amp;1` ; then echo true ; else echo false ; fi
+  register: php_zmq_enabled
+</pre>
+
+<pre>
+---
+# file: roles/stuartherbert.php-zmq/tasks/install.yml
+
+- name: install zmq pecl module
+  shell: pecl install zmq-{{php_zmq_version}}
+  sudo: True
+</pre>
+
+<pre>
+---
+# file: roles/stuartherbert.php-zmq/tasks/ubuntu_enable.yml
+
+- name: "Ubuntu: enable PHP zmq extension"
+  copy:
+    src: zmq.ini
+    dest: /etc/php5/mods-available/zmq.ini
+  sudo: True
+  notify:
+  - php5enmod zmq
+</pre>
+{% endraw %}
