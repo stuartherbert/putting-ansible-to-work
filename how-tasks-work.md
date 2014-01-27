@@ -174,7 +174,7 @@ The __action:__ prefix is the original way to do it, and using the module's name
 
 ## local_action:
 
-tbd
+__local_action:__ tells Ansible to run an action on the same computer that Ansible is running on, instead of running the action on the target computer.  See [How To Run Specific Tasks On Your Computer](miscellaneous-tips.html#how_to_run_specific_tasks_on_your_computer) for an example of how to use it.
 
 ## sudo:
 

@@ -44,11 +44,14 @@ When you're rebooting a target computer, you'll want Ansible to run a task on yo
 
 Use the __[local_action:](how-tasks-work.html#local_action)__ statement in conjunction with the `inventory_hostname` variable:
 
+{% raw %}
+
 <pre>
 ---
 - name: wait for reboot to complete
   local_action: wait_for port=22 host={{ inventory_hostname }} delay=10 timeout=300
 </pre>
+{% endraw %}
 
 Do note that you have to put all the module arguments on a single line when you use __local_action:__.
 

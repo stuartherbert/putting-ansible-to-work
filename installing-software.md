@@ -6,3 +6,5 @@ next: '<a href="building-software-from-source.html">Next: Building Software From
 ---
 
 # Installing Software Using Ansible
+
+Ansible's main use is to install software onto a target computer.
