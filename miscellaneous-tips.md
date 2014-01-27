@@ -7,7 +7,7 @@ next: '<a href="feedback.html">Next: Feedback Most Welcome</a>'
 
 # Miscellaneous Tips
 
-To finish this book, here's a list of Ansible tips that don't really fit into anywhere else in the book, but which will help.
+To finish this book, here's a list of Ansible tips that don't really fit into anywhere else, but which will help.
 
 ## Avoid Paramiko For Now
 
@@ -38,6 +38,20 @@ sudo apt-get install facter ohai
 Gathering facts using facter and ohai takes time, and adds to how long it takes your playbook to run against a target machine.  If you're not going to use the facts in your playbook, do you really need to gather them in the first place?
 </div>
 
+## How To Run Specific Tasks On Your Computer
+
+When you're rebooting a target computer, you'll want Ansible to run a task on your computer to check for when the target computer has finished rebooting.  (You can't run the task on the target computer.  The task will fail, because the target computer is unavailable whilst it reboots).
+
+Use the __[local_action:](how-tasks-work.html#local_action)__ statement in conjunction with the `inventory_hostname` variable:
+
+<pre>
+---
+- name: wait for reboot to complete
+  local_action: wait_for port=22 host={{ inventory_hostname }} delay=10 timeout=300
+</pre>
+
+Do note that you have to put all the module arguments on a single line when you use __local_action:__.
+
 ## Run A Single Play On A Single Computer
 
 If you want to run just one play (for example, you want to make just one change to a computer),
@@ -55,4 +69,15 @@ If you want to upload a file into the remote user's home folder, use `~/` at the
 - name: upload new bashrc file
   action: file src=bashrc dest=~/.bashrc mode=0644
   sudo: false
+</pre>
+
+## Use Jinja 2's trim Filter
+
+By default, Ansible doesn't strip trailing linefeed characters from the end of scripts, which will break your __when:__ clauses.  Use Jinja 2's `trim` filter whenever you use the `==` operator:
+
+<pre>
+---
+- include: inspect.yml
+- include: reboot.yml
+  when: "reboot_needed.stdout|trim == 'reboot required'"
 </pre>

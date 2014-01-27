@@ -16,7 +16,7 @@ Rather than download a ready-made example repo, I want you to create your first 
 
 If you've used Ansible before, this playbook might look a little different to how you currently do things.  Stick with it.  I promise that what I'm showing you is worth your time.
 
-Everything I show you in your first playbook, you'll be able to continue using throughout the book and in all of your playbook repos.  Get into the habit of using these practices straight away.  We'll build on them as the book progresses.  You'll build on them yourself after you've finished reading this book.
+Everything I show you in your first playbook, you'll be able to continue using throughout this book and in all of your playbook repos.  Get into the habit of using these practices straight away.  We'll build on them in each chapter.  You'll build on them yourself after you've finished reading this book.
 </div>
 
 ## Create Your First Playbook Repo

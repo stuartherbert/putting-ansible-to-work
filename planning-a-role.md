@@ -92,11 +92,19 @@ You're going to waste a lot of time waiting for Ansible if your software is cons
 
 ## Step 2: Install
 
-If the inspect stage says Use [Ansible's extensive list of modules](http://docs.ansible.com/modules_by_category.html) to install software onto the target computer.
+If the inspect stage says to go ahead, use [Ansible's extensive list of modules](http://docs.ansible.com/modules_by_category.html) to install software onto the target computer.  I'll cover how to perform this step in [Installing Software](installing-software.html) shortly.
 
-I'll cover how to perform this step in [Installing Software](installing-software.html) shortly.  You'll need to [build software from source](building-software-from-source.html) if there's no pre-built package available for your operating system.  (Sometimes, you might be tempted to use a [temporary install script](temporary-install-scripts.html), although I hope to talk you out of it later in this book!)
+You'll need to [build software from source](building-software-from-source.html) if there's no pre-built package available for your operating system.  (Sometimes, you might be tempted to use a [temporary install script](temporary-install-scripts.html), although I hope to talk you out of it later in this book!)
 
 Put this step in a separate `install.yml` or `<os>_install.yml` file so that it is easy to skip if the software is already installed, or to skip the install instructions for other operating systems.
+
+<div class="callout info" markdown="1">
+#### Why Do We Need A Separate Install Step?
+
+Separating out the install step makes it a lot easier to [skip the install step if the software is already installed on the target computer](making-roles-repeatable.html), and to [support multiple operating systems](multiple-operating-systems.html) (including multiple versions of the same operating system).
+
+It also helps improve the readability of your playbook.
+</div>
 
 ## Step 3: Enable
 

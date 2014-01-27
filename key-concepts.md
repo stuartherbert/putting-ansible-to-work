@@ -9,7 +9,7 @@ next: '<a href="installing-ansible.html">Next: Installing Ansible</a>'
 
 To get the most out of Ansible, and out of this book, there are a few terms that you need to become familiar with.
 
-Don't worry if they don't mean much to you first time around.  I've put them at the front of the book so that you can easily refer back to them, and I'll repeat them when they crop up later on in the book.  By the end of the book, you should be able to come back to this chapter and find that each term makes a lot more sense :)
+Don't worry if they don't mean much to you first time around.  I've put them at the front of this book so that you can easily refer back to them, and I'll repeat them when they crop up later on.  By the end of this book, you should be able to come back to this chapter and find that each term makes a lot more sense :)
 
 ## How Does Ansible Work?
 
@@ -114,7 +114,7 @@ This isn't a book about YAML, so rather than spend a lot of time talking about Y
 <div class="callout info" markdown="1">
 #### All YAML Files Start With Three Hyphens
 
-As you work your way through the book, you'll notice that every example YAML file in the book starts with three hyphens on the first line.  This is part of the YAML spec.
+As you work your way through this book, you'll notice that every example YAML file starts with three hyphens on the first line.  This is part of the YAML spec.
 
 If you leave out the three hyphens, your YAML file won't load.
 </div>
@@ -135,7 +135,7 @@ A role must contain at least a task, metadata or a handler.
 
 Roles are said to be _applied to a computer_ when they have successfully run.
 
-Most of the book is about roles - they are fundamental to how to work with Ansible.  I've split the information across these chapters:
+Most of this book is about roles - they are fundamental to how to work with Ansible.  I've split the information across these chapters:
 
 * [Building Roles](building-roles.html)
 * [Working With Config Files](working-with-config-files.html)

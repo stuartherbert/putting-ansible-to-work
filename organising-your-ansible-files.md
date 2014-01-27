@@ -218,7 +218,7 @@ Most roles will not need to define any handlers, and won't need to have a `handl
 
 Handlers can be called by any role, not just the role that they are defined in.  Ansible cannot find a handler if the role that defines it hasn't been included in a `<play.xml>` file or listed as a dependency in one of the `meta/main.yml` files.
 
-I cover handlers in detail in [Restarting Services](restarting-services.html) later in the book.
+I cover handlers in detail in [Restarting Services](restarting-services.html) later in this book.
 
 ## roles/&lt;role&gt;/library/
 
@@ -242,7 +242,7 @@ dependencies:
 
 Most roles will not need to define any dependencies, and won't need to have a `meta/` folder.
 
-I cover dependencies in detail in [Adding Dependencies To Roles](adding-dependencies-to-roles.html) later in the book.
+I cover dependencies in detail in [Adding Dependencies To Roles](adding-dependencies-to-roles.html) later in this book.
 
 <div class="callout info" markdown="1">
 #### AnsibleWorks Galaxy Metadata

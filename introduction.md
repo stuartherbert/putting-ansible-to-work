@@ -45,7 +45,7 @@ This book will teach you how to get things done using Ansible:
 * how to [support multiple target computers](multiple-target-computers.html) from the same, single Ansible repo
 * how to [download and use roles written by other people](ansibleworks-galaxy.html) from [AnsibleWorks Galaxy](http://galaxy.ansibleworks.com)
 
-The book finishes with a collection of [miscellaneous tips](miscellaneous-tips.html) that will save you time and trouble as you use Ansible further.
+This book finishes with a collection of [miscellaneous tips](miscellaneous-tips.html) that will save you time and trouble as you use Ansible further.
 
 <div class="callout info" markdown="1">
 #### Ansible Official Documentation

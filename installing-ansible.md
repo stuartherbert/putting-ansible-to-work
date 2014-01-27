@@ -71,7 +71,7 @@ Upgrading is very simple:
 2. Re-clone the Ansible git repo and run `sudo make install` inside it again
 3. Re-run your playbooks to make sure that they still work
 
-If any of your playbooks have stopped working, check [the Ansible changelog](https://github.com/ansible/ansible/blob/devel/CHANGELOG.md) first to see if there are any useful pointers to your problem.  I look at [debugging failing roles](debugging-failing-roles.html) later in the book.
+If any of your playbooks have stopped working, check [the Ansible changelog](https://github.com/ansible/ansible/blob/devel/CHANGELOG.md) first to see if there are any useful pointers to your problem.  I look at [debugging failing roles](debugging-failing-roles.html) later in this book.
 
 <div class="callout warning" markdown="1">
 #### Remember To Tell Everyone To Upgrade Ansible

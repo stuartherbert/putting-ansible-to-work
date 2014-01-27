@@ -84,6 +84,7 @@ Here's all of the prefixes that I know about, and a brief description of what th
 
 * name:
 * action: or &lt;module&gt;:
+* local_action:
 * sudo:
 * sudo_user:
 * remote_user:
@@ -170,6 +171,10 @@ Both are equally valid.
 
 The __action:__ prefix is the original way to do it, and using the module's name directly is the current recommended way to do it.
 </div>
+
+## local_action:
+
+tbd
 
 ## sudo:
 
