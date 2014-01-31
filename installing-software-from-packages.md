@@ -11,6 +11,19 @@ The quickest way to turn a target computer into a machine that's ready to be use
 
 Ansible supports most of the major packaging managers for Linux, and plenty of third-party packaging managers too.  You'll find [a full list of packaging modules](http://docs.ansible.com/list_of_packaging_modules.html) in the official Ansible docs.
 
+<div class="callout danger" markdown="1">
+#### Beware Third-Party Packages
+
+If your operating system doesn't provide a package for the software you need, and neither does the software's author, you should always [build the software from source](building-software-from-source.html).
+
+__Downloading a package made by a third party who you do not know is dangerous.__
+
+* You do not know that the package is safe to install on your target computer.
+* You do not know that the package contains software that is safe to run on your target computer.
+
+Hacked servers can damage your reputation, cost your business money, and (if you hold personal data) lead to further legal and reputational problems.  Making sure your servers only contain software you trust is one part of the puzzle of keeping your servers and data secure.
+</div>
+
 ## How To Install The Latest Version Of A Package
 
 Most of the time, you'll want to install the latest version of a package.  This is really easy to do:

@@ -18,6 +18,7 @@ I'm very grateful to the following people who gave up their time to help me make
 * Gill Twist [@GillTwistRec](https://twitter.com/GillTwistRec)
 * Haydar Ciftci [@haydar_ciftci](https://twitter.com/haydar_ciftci)
 * Jonathan Sundquist [@jsundquist](https://twitter.com/jsundquist)
+* Lee Davis [@leedavis81](https://twitter.com/leedavis81)
 * Michael Heap [@mheap](https://twitter.com/mheap)
 * Philip Norton [@philipnorton42](https://twitter.com/philipnorton42)
 * Raul Fraile [@raulefraile](https://twitter.com/raulefraile)
