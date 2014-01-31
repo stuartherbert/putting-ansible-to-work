@@ -119,6 +119,12 @@ As you work your way through this book, you'll notice that every example YAML fi
 If you leave out the three hyphens, your YAML file won't load.
 </div>
 
+<div class="callout warning" markdown="1">
+#### Don't Mix Tabs And Spaces In YAML Files
+
+Like Python, YAML uses indentation to understand the scope of an instruction on a line.  If you indent your lines using a mixture of tabs and spaces, YAML can't tell what you mean, and Ansible will report a syntax error.
+</div>
+
 If you really want to read more about YAML, there's [an official website for YAML](http://www.yaml.org/), and AnsibleWorks have posted their own [YAML syntax walkthrough](http://docs.ansible.com/YAMLSyntax.html).
 
 ## Roles

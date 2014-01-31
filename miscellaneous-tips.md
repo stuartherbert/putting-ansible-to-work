@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Miscellaneous Tips
-prev: '<a href="ansibleworks-galaxy.html">Prev: Using Third-Party Roles From AnsibleWorks Galaxy</a>'
+prev: '<a href="using-ansible-with-vagrant.html">Prev: Using Ansible With Vagrant</a>'
 next: '<a href="feedback.html">Next: Feedback Most Welcome</a>'
 ---
 

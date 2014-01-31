@@ -1,8 +1,8 @@
 ---
 layout: top-level
 title: Supporting Multiple Target Computers
-prev: '<a href="using-meta-roles.html">Prev: Using Meta-Roles</a>'
-next: '<a href="ansibleworks-galaxy.html">Next: Using Third-Party Roles From AnsibleWorks Galaxy</a>'
+prev: '<a href="ansibleworks-galaxy.html">Prev: Using Third-Party Roles From AnsibleWorks Galaxy</a>'
+next: '<a href="managing-your-base-operating-system.html">Next: Managing Your Base Operating System</a>'
 ---
 
 # Supporting Multiple Target Computers

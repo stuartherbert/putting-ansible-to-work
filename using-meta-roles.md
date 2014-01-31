@@ -2,7 +2,7 @@
 layout: top-level
 title: Using Meta-Roles
 prev: '<a href="multiple-operating-systems.html">Prev: Supporting Multiple Operating Systems</a>'
-next: '<a href="multiple-target-computers.html">Next: Supporting Multiple Target Computers</a>'
+next: '<a href="ansibleworks-galaxy.html">Next: Using Third-Party Roles From AnsibleWorks Galaxy</a>'
 ---
 
 # Using Meta-Roles

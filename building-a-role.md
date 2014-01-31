@@ -17,4 +17,10 @@ Follow these steps when you're adding new roles to your Ansible playbook:
 1. [Add dependencies to the role](adding-dependencies-to-roles.html) to make sure that the role has everything it needs in order to succeed.  In larger playbooks, you'll find it really helps if you [create groups of roles](using-meta-roles.html) to simplify your dependencies.
 1. Add [support for multiple operating systems](multiple-operating-systems.html) as and when required.
 
+<div class="callout info" markdown="1">
+#### Bookmark This Page
+
+If you're reading this book in a browser, bookmark this page now, so that you can keep coming back to it as you build up your confidence and experience with role-building in Ansible.
+</div>
+
 Let's get started by looking at how to [install software from packages](installing-software-from-packages.html).
