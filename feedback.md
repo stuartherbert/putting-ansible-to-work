@@ -2,7 +2,7 @@
 layout: top-level
 title: Feedback Most Welcome
 prev: '<a href="miscellaneous-tips.html">Prev: Miscellaneous Tips</a>'
-next: '<a href="copyright.html">Next: Copyright</a>'
+next: '<a href="acknowledgments.html">Next: Acknowledgments</a>'
 ---
 
 # Feedback Most Welcome

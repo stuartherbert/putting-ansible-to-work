@@ -1,8 +1,8 @@
 ---
 layout: top-level
 title: Supporting Multiple Operating Systems
-prev: '<a href="using-meta-roles.html">Prev: Using Meta-Roles</a>'
-next: '<a href="multiple-target-computers.html">Next: Supporting Multiple Target Computers</a>'
+prev: '<a href="adding-dependencies-to-roles.html">Prev: Adding Dependencies To Roles</a>'
+next: '<a href="using-meta-roles.html">Next: Using Meta-Roles</a>'
 ---
 
 # Supporting Multiple Operating Systems

@@ -1,8 +1,8 @@
 ---
 layout: top-level
 title: Using Meta-Roles
-prev: '<a href="adding-dependencies-to-roles.html">Prev: Adding Dependencies To Roles</a>'
-next: '<a href="multiple-operating-systems.html">Next: Supporting Multiple Operating Systems</a>'
+prev: '<a href="multiple-operating-systems.html">Prev: Supporting Multiple Operating Systems</a>'
+next: '<a href="multiple-target-computers.html">Next: Supporting Multiple Target Computers</a>'
 ---
 
 # Using Meta-Roles

@@ -1,7 +1,7 @@
 ---
 layout: top-level
 title: Copyright
-prev: '<a href="feedback.html">Prev: Feedback Most Welcome</a>'
+prev: '<a href="acknowledgments.html">Prev: Acknowledgments</a>'
 next: '<a href="licence.html">Next: Licence</a>'
 ---
 # Copyright

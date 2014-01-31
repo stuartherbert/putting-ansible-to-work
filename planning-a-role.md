@@ -2,7 +2,7 @@
 layout: top-level
 title: Planning A Role
 prev: '<a href="how-tasks-work.html">Prev: How Tasks Work</a>'
-next: '<a href="installing-software.html">Next: Installing Software Using Ansible</a>'
+next: '<a href="building-a-role.html">Next: Building A Role</a>'
 ---
 
 # Planning A Role
@@ -20,6 +20,7 @@ A role can contain any of:
 * _modules_ when you need to extend Ansible
 * _tasks_ to provision software and otherwise make changes to the target computer
 * _templates_ to be expanded using Jinja2 and then uploaded to the target computer
+* _variables_ to loaded using the [include_vars module](http://docs.ansible.com/include_vars_module.html)
 
 You only need
 
@@ -27,6 +28,7 @@ You only need
 * _handlers_ when [restarting services](restarting-services.html)
 * _metadata_ when [your role needs other roles to have run first](adding-dependencies-to-roles.html)
 * _tasks_ when [installing software](installing-software.html)
+* _variables_ when [supporting multiple operating systems](multiple-operating-systems.html)
 
 ## How Small Should Each Role Be?
 
