@@ -155,3 +155,12 @@ Just as you get _code smells_ when writing code, you also get them when automati
 
 Sometimes, you might be better off re-installing the operating system from scratch and then re-running your playbook.
 </div>
+
+## What's Next
+
+There are several ways that we can improve roles that install software from packages:
+
+* We are relying on the pre-built package to also install every package that it depends upon.  Sometimes (for example, when dealing with MySQL) there are several alternative packages available.  If you prefer to use one of the alternatives, you need to make sure that the alternative package gets installed first.  I'll show you how to do that in [Adding Dependencies To Roles](adding-dependencies-to-roles.html).
+* We don't have to do anything to make these kind of roles repeatable.  Ansible's modules will make sure that the sensible thing is done when we run our playbook a second, third, fourth, and fifth time against the same target computer.
+* We haven't installed any config files for the software.  The software probably comes with a config file that you need to change.  I'll show you how to do that in [Working With Config Files](working-with-config-files.html).
+* If we're installing a new version of the software, or a new version of its config file, the software needs restarting to pick up those changes.  I'll show you how to do that in [Restarting Services](restarting-services.html).
