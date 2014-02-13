@@ -7,7 +7,7 @@ next: '<a href="working-with-config-files.html">Next: Working With Config Files<
 
 # Using Temporary Install Scripts
 
-There'll be times when you get frustrated with Ansible and how it does things. Uploading and running a script to perform a task gets you past that frustration.
+When building software from source, there might be times when you get frustrated with Ansible and how it does things. Uploading and running a simple shell script to perform a task gets you past that frustration.
 
 ## What Is A Temporary Install Script?
 
@@ -20,7 +20,7 @@ The main advantage of temporary install scripts is that they use skills you're a
 * You already know how to write shell scripts.
 * You already know how to install software from the command-line.
 
-It's very quick and easy to combine this skills to knock up a script that gets the job done.  Ansible also makes it easy to upload and run these scripts on the target computer.
+It's very quick and easy to combine these skills to knock up a script that gets the job done.  Ansible also makes it easy to upload and run these scripts on the target computer.
 
 ## Creating A Script
 
@@ -59,7 +59,7 @@ Use Ansible's [script module](http://docs.ansible.com/script_module.html) to upl
 
 ## Don't Do This!
 
-Yes, I've just shown you how to do it - now I'm telling you that you shouldn't.  Why?  Let's start by looking at the example script once more:
+Yes, I've just shown you how to do it - now I'm telling you that you shouldn't.  Why not?  Let's start by looking at the example script once more:
 
 <pre>
 #!/bin/bash

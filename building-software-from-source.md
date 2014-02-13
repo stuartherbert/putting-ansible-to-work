@@ -9,10 +9,10 @@ next: '<a href="temporary-install-scripts.html">Next: Using Temporary Install Sc
 
 ## When Should You Build From Source?
 
-There are four common scenarios where you'll need to build software from source.
+There are four common scenarios where you'll want to build software from source.
 
-* If there's no package available for the operating system, it's a good idea to build the software from source yourself.
-* It's also the best way to install software that you've customised in some way.  Most software apps can be compiled with a large array of optional features, and you may find that you need an optional feature that isn't enabled in a pre-built package.
+* If there's no pre-compiled package available for the operating system, it's a good idea to build the software from source yourself.
+* It's also one way to install software that you've customised in some way.  Most software apps can be compiled with a large array of optional features, and you may find that you need an optional feature that isn't enabled in a pre-built package.
 * If you need to use the same software across multiple operating systems (such as Linux servers and Apple laptops), building the software yourself might be the only way to get the same versions of the software everywhere you use it.  Version mismatches between development and production environments can be a source of costly bugs.
 * Your own software may only be available in source form.
 
@@ -24,7 +24,7 @@ Experienced system administrators are rightly very reluctant to build anything f
 * Building from source takes time and eats CPU and memory.  Depending on the spec of the server, the server is unable to do its normal work whilst building is going on.
 * The tools required to build from source can be useful to anyone who breaks into a server.  Leaving them off the box makes a hacker's job at least a little harder once they're in.
 
-Do you have a lot of servers to install software onto?  Consider building the software once in a development environment, and then turning it into a Dpkg or RPM package to install into your production environment.  The Fedora project has [a draft RPM manual](http://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/) to get you started with RPM, and the Debian Handbook includes [a chapter on how to create your own Dpkgs](http://debian-handbook.info/browse/stable/debian-packaging.html).
+Do you have a lot of servers to install software onto?  Consider building the software once in a development environment, and then turning it into a Dpkg or RPM package to install into your production environment.  The Fedora project has [a draft RPM manual](http://docs.fedoraproject.org/en-US/Fedora_Draft_Documentation/0.1/html/RPM_Guide/) to get you started with building RPMs (look at [Mock](https://fedoraproject.org/wiki/Projects/Mock) also!), and the Debian Handbook includes [a chapter on how to create your own Dpkgs](http://debian-handbook.info/browse/stable/debian-packaging.html).
 </div>
 
 ## The Build Process
@@ -41,7 +41,7 @@ You can build the vast majority of software from source using these steps:
 
 You're going to need the right tools to build software from source.  These include:
 
-* Compilers (C, C++), runtime engines (scripting languages), development kit (Java and JVM languages)
+* Compilers (C, C++), runtime engines (scripting languages), software development kit (Java and JVM languages)
 * Build tools such as `autotools` and `make` (C, C++) or `maven` (Java et al)
 * Software libraries that the software you're building links against (C, C++ again)
 * Extensions and modules that the software you're building uses when it runs (dynamic languages)
@@ -62,13 +62,12 @@ Create Ansible roles for each of the tools that you need.  Add the roles to your
 
 <pre>
 ---
-# file: plays/nodejs-server.yml
-- hosts: nodejs-servers
+# file: plays/redis-server.yml
+- hosts: redis-servers
   roles:
   - stuartherbert.gcc
   - stuartherbert.make
-  - stuartherbert.libzmq
-  - stuartherbert.nodejs
+  - stuartherbert.redis-server
 </pre>
 
 ### Installing Common Tools In One Go
@@ -149,7 +148,7 @@ The unarchive module uploads an archive from my computer (where Ansible is runni
 * a copy of the tarball on my local computer, and
 * sufficient bandwidth to perform the upload
 
-__I don't want a copy of the tarball in my playbook.__  If I add that to my Git repo, it's going to dramatically increase the size of my Git repo and make future Git clones too slow.  Now, I could get around this by using the [local_action:](how-tasks-work.html#local_action:) statement to download the tarball to my computer instead of to the target computer.  If that's something you want to do, please do.
+__I don't want a copy of the tarball in my playbook.__  If I add that to my Git repo, it's going to dramatically increase the size of my Git repo and make future Git clones too slow.  Now, I could avoid storing the tarball in my plabook by using the [local_action:](how-tasks-work.html#local_action:) statement to download the tarball to my computer when I run the play.  However, then I'd run into the other problem with using Ansible's unarchive module.
 
 The second reason is that __it is much quicker to download the file than to upload it__.  In my case, my computer has 20 Mbit/sec (at home) or 100 Mbit/sec (at the office) in upload bandwidth, and it has to share that with other users.  A large upload is slower, even more so if I'm using a decent VPN to connect into our datacentre.  A large upload can also inconvenience other users of my internet connection. The target computers have anything from 80 Mbit/sec (at home) to several gigabits/sec (at our datacentre) in download bandwidth.  It's nearly always much quicker to download onto the target computer.
 
@@ -251,7 +250,7 @@ To show you what I mean, here's an example for compiling PHP's YAML extension:
 
 
 </pre>
-The strange-looking empty file above is saved as `roles/stuartherbert.php-yaml/files/input.txt` on disk.  It contains two blank lines.
+The strange-looking empty file above actually contains two blank lines.  It is saved as `roles/stuartherbert.php-yaml/files/input.txt` on disk.
 
 <pre>
 ---
@@ -268,7 +267,7 @@ The strange-looking empty file above is saved as `roles/stuartherbert.php-yaml/f
   sudo: True
 </pre>
 
-This should work most of the time.  You'll only have problems if the software deliberately empties the input buffer before prompting.  If that happens, you'll have to consider patching the software's build process, or perhaps filing a bug with the software's author which explains how their approach prevents an automated install.
+This should work most of the time.  You'll only have problems if the software deliberately empties the input buffer before prompting.  If that happens, you'll have to consider patching the software's build process, or perhaps filing a bug with the software's author which explains how their approach prevents an automated install.  Be aware that many software authors have no experience of automation, and might need some help in understanding the benefits of the changes you're asking for.
 </div>
 
 <div class="callout info" markdown="1">
