@@ -7,6 +7,12 @@ next: '<a href="making-roles-repeatable.html">Next: Making Roles Repeatable</a>'
 
 # Restarting Services
 
+## What Is A Service?
+
+A service is an app such as Apache, MySQL or MongoDB.  It's a UNIX daemon that is normally started when the target computer is booted up.  Services run in the background, and you normally interact with them over network protocols.
+
+In the old days, services were started and stopped using shell scripts found in the `/etc/init.d/` folder.  At the time of writing, Linux distros are transitioning to [systemd](http://www.freedesktop.org/wiki/Software/systemd/) for managing services.  OSX uses [launchd and launchctl](http://en.wikipedia.org/wiki/Launchd) to manage services.
+
 ## When Do I Need To Restart Services?
 
 {% raw %}
